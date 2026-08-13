@@ -31,9 +31,10 @@ export default function Header() {
             src="/assets/logo-timebase-wordmark-gradient-tagline.png"
             alt="Logo Time Base - software monitoring karyawan WFA dengan tagline Accountability in Every Hour"
             title="Time Base - Accountability in Every Hour"
-            width={220}
-            height={48}
+            width={434}
+            height={67}
             priority
+            loading="eager"
             className={styles.logoDesktop}
           />
           <Image

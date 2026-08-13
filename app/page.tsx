@@ -16,7 +16,12 @@ import { SITE_URL, SITE_NAME } from "@/lib/site";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Software Monitoring Karyawan WFA",
+  // Note: `title.template` on the root layout does NOT apply to a `title`
+  // defined in a page.tsx of the SAME route segment (root layout + root
+  // page here) — see Next.js metadata docs. The full title (with the
+  // brand suffix) must be spelled out explicitly on this page only; child
+  // route segments (e.g. /fitur) can rely on the layout's template as usual.
+  title: `Software Monitoring Karyawan WFA | ${SITE_NAME}`,
   description:
     "Software monitoring karyawan WFA dari Time Base: platform monitoring karyawan real-time, harga IDR transparan untuk tim WFA Indonesia.",
   alternates: { canonical: SITE_URL },
