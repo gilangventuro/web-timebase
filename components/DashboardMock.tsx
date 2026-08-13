@@ -13,6 +13,16 @@ const STATUS_CARDS = [
 
 const BAR_COUNT = 12;
 
+// Varied static heights so the chart reads as real data immediately from
+// first paint (server-rendered, before any JS has run) — Anime.js's
+// looping animation only ever enhances this baseline. Without an explicit
+// baseline, the very first Anime.js tick supplies the initial "from"
+// value, and if that tick is delayed (observed to happen well outside
+// normal interactive timing in some render/capture pipelines), every bar
+// sits at its raw CSS default in the meantime; an identical flat default
+// reads as an empty/broken chart rather than a populated one.
+const BAR_HEIGHTS = [42, 68, 35, 74, 50, 85, 44, 60, 38, 55, 78, 47];
+
 /**
  * DashboardMock — "Command Center" interactive dashboard mock.
  * Replaces the (unavailable) company profile video for the Beranda hero.
@@ -91,7 +101,7 @@ export default function DashboardMock() {
 
       <div className={styles.chart} ref={barsWrapRef} aria-hidden="true">
         {Array.from({ length: BAR_COUNT }).map((_, i) => (
-          <span key={i} data-bar className={styles.bar} />
+          <span key={i} data-bar className={styles.bar} style={{ height: `${BAR_HEIGHTS[i % BAR_HEIGHTS.length]}%` }} />
         ))}
       </div>
 

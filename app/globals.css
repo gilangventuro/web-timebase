@@ -198,11 +198,22 @@ ol {
   color: transparent;
 }
 
-/* ---- Stagger item base state (Anime.js controlled) ---- */
+/* ---- Stagger item marker ----
+   `.stagger-item` is purely a marker class AnimatedSection.tsx uses to find
+   its staggered children — it intentionally carries NO default hidden
+   state here. Whether a given element starts hidden (below the fold,
+   revealed on scroll) or solid immediately (already in the initial
+   viewport at mount) is decided per-instance, synchronously before paint,
+   in AnimatedSection's layout effect. Baking `opacity:0` into this class
+   would hide every stagger item — including ones already on screen at
+   load — until JS had a chance to prove otherwise. */
 .stagger-item {
-  opacity: 0;
-  transform: translateY(24px);
   will-change: opacity, transform;
+  /* The reveal/hide itself is an instant `anime.set()` DOM mutation (see
+     AnimatedSection.tsx) — this transition is what turns that instant
+     change into a smooth fade, driven by the compositor rather than
+     Anime.js's own requestAnimationFrame ticker. */
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
 /* ---- Screen-reader only utility ---- */

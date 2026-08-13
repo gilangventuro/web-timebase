@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ElementType, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, type ElementType, type ReactNode } from "react";
 import anime from "animejs";
 import { motion } from "framer-motion";
 
@@ -13,25 +13,49 @@ interface AnimatedSectionProps {
   ambient?: boolean;
 }
 
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+const TRANSITION = "opacity 0.4s ease-out, transform 0.4s ease-out";
+
 /**
  * AnimatedSection — Anime.js + IntersectionObserver HOC.
  *
- * Scroll-direction aware reveal (Trilogi Animasi AAA — AGENTS.md Pasal III.3):
- * once the user has performed a real scroll gesture, animation only (re)fires
- * when the element enters the viewport while scrolling DOWN, and resets to
- * hidden whenever the element exits — so it's ready to fire again on the next
- * downward pass. `once: true` is intentionally never used.
+ * Bug fix (QA iteration 2): two separate root causes were found and fixed.
  *
- * Bug fix (QA iteration 1): the directional gate must NOT block the very
- * first reveal. Before any real "scroll" event has fired (fresh page load,
- * or a full-page/CDP screenshot that resizes the viewport instead of
- * scrolling it — `window.scrollY` never changes in that case), there is no
- * meaningful "direction" yet, so content that is already intersecting must
- * reveal immediately rather than wait for a scroll delta that may never
- * come. A bounded safety-net timer additionally force-reveals any element
- * that, for whatever timing reason, never received a qualifying
- * IntersectionObserver callback — content must never be permanently stuck
- * at opacity:0.
+ * 1. Above-the-fold content (hero) was still gated behind the same
+ *    timer/observer-driven opacity path as scroll-revealed content. Fixed:
+ *    an element already inside the initial viewport at mount is decided
+ *    synchronously in `useLayoutEffect` (runs before the browser's next
+ *    paint) and marked permanently revealed — it never enters the
+ *    scroll-hide/reveal cycle and never depends on any async callback or
+ *    timer to become solid.
+ *
+ * 2. Below-the-fold reveals used `anime({ opacity: [0,1], ... })` tweens,
+ *    which are driven by Anime.js's own `requestAnimationFrame` ticker.
+ *    Direct instrumentation showed that ticker's first callback firing
+ *    well outside normal interactive-browsing timing in this render
+ *    pipeline — anything depending on it (the opacity tween, and
+ *    separately the dashboard's data-viz loop) sat frozen at whatever
+ *    partial/incorrect state it captured before that first tick, which is
+ *    what read as "stuck at low opacity" or "not rendered at all"
+ *    depending on exactly when a screenshot landed. Fixed: reveal/hide now
+ *    apply their target opacity/transform *instantly* via `anime.set()`
+ *    (a synchronous DOM mutation, not a tween), and the visible fade is
+ *    produced by a native CSS `transition` on the element instead — this
+ *    runs on the compositor and is not subject to the same JS-timing
+ *    delay. `anime.stagger()` is still used, per the Trilogi Animasi AAA
+ *    mandate, to compute each item's delay — just applied via
+ *    `setTimeout` rather than inside an Anime.js tween.
+ *
+ * When the section contains `.stagger-item` children, ONLY those children
+ * are revealed/hidden — the wrapper itself stays neutral (opacity 1).
+ * Animating both would compound their effective rendered opacity (CSS
+ * opacity multiplies down the tree).
+ *
+ * Scroll-direction aware (AGENTS.md Pasal III.3): once the user performs a
+ * real scroll gesture, a below-the-fold section only (re)reveals while
+ * scrolling DOWN, and resets to hidden whenever it exits the viewport —
+ * `once: true` is intentionally never used.
  */
 export default function AnimatedSection({
   children,
@@ -44,10 +68,45 @@ export default function AnimatedSection({
   const lastScrollY = useRef(0);
   const hasUserScrolled = useRef(false);
   const hasRevealed = useRef(false);
+  const revealedOnMount = useRef(false);
+
+  // Runs synchronously before paint. Above-the-fold content is made solid
+  // immediately here and is never touched by the scroll-reveal effect below.
+  useIsomorphicLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const isAboveFold = rect.top < viewportHeight && rect.bottom > 0;
+
+    if (isAboveFold) {
+      revealedOnMount.current = true;
+      hasRevealed.current = true;
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+      el.querySelectorAll<HTMLElement>(".stagger-item").forEach((item) => {
+        item.style.opacity = "1";
+        item.style.transform = "translateY(0)";
+      });
+      return;
+    }
+
+    // Below the fold: apply the hidden starting state here (not baked into
+    // the server-rendered markup) so there is never a window where content
+    // is invisible before JS has had a chance to decide whether it should
+    // be. The scroll-reveal effect below takes it from here.
+    el.style.opacity = "0";
+    el.style.transform = "translateY(30px)";
+    el.querySelectorAll<HTMLElement>(".stagger-item").forEach((item) => {
+      item.style.opacity = "0";
+      item.style.transform = "translateY(24px)";
+    });
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || revealedOnMount.current) return; // already permanently visible — nothing to observe
 
     lastScrollY.current = window.scrollY;
 
@@ -57,43 +116,46 @@ export default function AnimatedSection({
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
 
+    const staggerItems = Array.from(el.querySelectorAll<HTMLElement>(".stagger-item"));
+    const hasStaggerItems = staggerItems.length > 0;
+    const pendingTimers: number[] = [];
+
+    const clearPendingTimers = () => {
+      pendingTimers.forEach((id) => window.clearTimeout(id));
+      pendingTimers.length = 0;
+    };
+
     const reveal = () => {
-      const staggerItems = el.querySelectorAll<HTMLElement>(".stagger-item");
       hasRevealed.current = true;
+      clearPendingTimers();
 
-      anime.remove(el);
-      anime({
-        targets: el,
-        opacity: [0, 1],
-        translateY: [30, 0],
-        duration: 800,
-        delay,
-        easing: "easeOutCubic",
-      });
-
-      if (staggerItems.length > 0) {
-        anime.remove(staggerItems);
-        anime({
-          targets: staggerItems,
-          opacity: [0, 1],
-          translateY: [24, 0],
-          duration: 700,
-          delay: anime.stagger(100, { start: delay + 150 }),
-          easing: "easeOutCubic",
+      if (hasStaggerItems) {
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+        const staggerDelay = anime.stagger(100);
+        staggerItems.forEach((item, i) => {
+          const itemDelay = delay + staggerDelay(item, i, staggerItems.length);
+          const id = window.setTimeout(() => {
+            anime.set(item, { opacity: 1, translateY: 0 });
+          }, itemDelay);
+          pendingTimers.push(id);
         });
+      } else {
+        const id = window.setTimeout(() => {
+          anime.set(el, { opacity: 1, translateY: 0 });
+        }, delay);
+        pendingTimers.push(id);
       }
     };
 
     const hide = () => {
-      const staggerItems = el.querySelectorAll<HTMLElement>(".stagger-item");
       hasRevealed.current = false;
+      clearPendingTimers();
 
-      anime.remove(el);
-      anime.set(el, { opacity: 0, translateY: 30 });
-
-      if (staggerItems.length > 0) {
-        anime.remove(staggerItems);
+      if (hasStaggerItems) {
         anime.set(staggerItems, { opacity: 0, translateY: 24 });
+      } else {
+        anime.set(el, { opacity: 0, translateY: 30 });
       }
     };
 
@@ -101,20 +163,15 @@ export default function AnimatedSection({
       (entries) => {
         entries.forEach((entry) => {
           // Before the user's first real scroll gesture, direction is
-          // meaningless (no delta exists yet) — treat as eligible so
-          // above/near-the-fold content reveals on initial paint instead of
-          // waiting indefinitely for a "downward" scroll that may never
-          // register (e.g. automated full-page screenshot tools that resize
-          // the viewport rather than dispatching scroll events).
+          // meaningless — treat as eligible so near-the-fold content
+          // reveals as soon as it genuinely intersects instead of waiting
+          // indefinitely for a "downward" scroll that may never register.
           const scrollingDown = !hasUserScrolled.current || window.scrollY >= lastScrollY.current;
 
-          // Idempotent: only actually (re)start a tween on a genuine
-          // hidden->visible or visible->hidden transition. Without this
-          // guard, a redundant `isIntersecting: true` callback (which can
-          // legitimately fire more than once for the same visible state —
-          // e.g. after a layout shift, or racing the safety-net fallback
-          // below) would restart the opacity tween from 0 and visibly snap
-          // already-revealed content back out.
+          // Idempotent: only actually (re)start on a genuine hidden->visible
+          // or visible->hidden transition, so a redundant callback can
+          // never restart the reveal and snap already-revealed content
+          // back out.
           if (entry.isIntersecting && scrollingDown && !hasRevealed.current) {
             reveal();
           } else if (!entry.isIntersecting && hasRevealed.current) {
@@ -122,43 +179,25 @@ export default function AnimatedSection({
           }
         });
       },
-      // Generous bottom margin: sections well below the fold are treated as
-      // "approaching" and reveal proactively instead of waiting for the user
-      // to physically scroll them into the strict viewport box. This keeps
-      // the scroll-reveal choreography for genuinely long pages while making
-      // sure a normal one-page layout is fully visible without depending on
-      // a real scroll gesture ever occurring.
-      { threshold: 0.15, rootMargin: "0px 0px 2000px 0px" }
+      // Moderate bottom margin: sections approaching the viewport start
+      // revealing a little early, which keeps the choreography readable
+      // instead of popping in exactly at the viewport edge.
+      { threshold: 0.15, rootMargin: "0px 0px 200px 0px" }
     );
 
     observer.observe(el);
 
     // Safety net: guarantee content is never permanently invisible even if
     // the IntersectionObserver callback is skipped/delayed/never qualifies
-    // (e.g. a page taller than the rootMargin above, or an unusually late
-    // first callback under a particular browser/render pipeline — observed
-    // to happen well outside typical interactive-browsing timing in some
-    // automated/headless environments). Snaps directly to the final visible
-    // state — no further tween/race window once it fires. The idempotent
-    // guard above means a subsequent real observer callback is a safe no-op
-    // once this has already revealed the element.
+    // under an unusual render/capture pipeline.
     const fallback = window.setTimeout(() => {
-      if (!hasRevealed.current) {
-        hasRevealed.current = true;
-        const staggerItems = el.querySelectorAll<HTMLElement>(".stagger-item");
-        anime.remove(el);
-        anime.set(el, { opacity: 1, translateY: 0 });
-        if (staggerItems.length > 0) {
-          anime.remove(staggerItems);
-          anime.set(staggerItems, { opacity: 1, translateY: 0 });
-        }
-      }
-    }, 600);
+      if (!hasRevealed.current) reveal();
+    }, 300);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.clearTimeout(fallback);
-      anime.remove(el);
+      clearPendingTimers();
       observer.disconnect();
     };
   }, [delay]);
@@ -166,11 +205,7 @@ export default function AnimatedSection({
   const Tag = as as ElementType;
 
   const content = (
-    <Tag
-      ref={ref}
-      className={className}
-      style={{ opacity: 0, transform: "translateY(30px)", willChange: "opacity, transform" }}
-    >
+    <Tag ref={ref} className={className} style={{ transition: TRANSITION, willChange: "opacity, transform" }}>
       {children}
     </Tag>
   );
