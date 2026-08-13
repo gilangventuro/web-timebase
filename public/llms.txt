@@ -1,0 +1,26 @@
+# Time Base
+
+> Time Base adalah platform monitoring aktivitas kerja karyawan yang dirancang agar perusahaan dengan skema Work From Anywhere (WFA) bisa memantau kinerja timnya secara real-time — mencakup status Active/Idle/Distraction, screenshot otomatis, pelacakan aplikasi & situs web, serta manajemen akses berbasis role. Berbasis di Kota Malang, berdiri 2026.
+
+Tagline: "Accountability in Every Hour"
+
+## Halaman Utama
+
+- [Beranda](https://timebase.id/): Software monitoring karyawan WFA — ringkasan platform, masalah yang diselesaikan, dan empat fitur inti.
+- [Fitur](https://timebase.id/fitur): Detail Real-time Activity Monitoring, Automatic Screenshot Capture, App & Website Usage Tracking, User & Access Management.
+- [Perbandingan](https://timebase.id/perbandingan): Perbandingan Time Base vs Time Doctor, Hubstaff, Insightful, dan Dokodemo-Kerja.
+- [Harga](https://timebase.id/harga): Paket harga Starter/Business/Enterprise dalam Rupiah (IDR), hubungi tim untuk penawaran.
+- [Tentang](https://timebase.id/tentang): Transparansi & kepatuhan UU PDP dalam praktik monitoring karyawan.
+- [Blog](https://timebase.id/blog): Artikel seputar monitoring karyawan WFA, perbandingan model kerja, dan kepatuhan data.
+- [Kontak](https://timebase.id/kontak): Jadwalkan demo via WhatsApp (082142781080) atau email (timebase@gmail.com).
+
+## Fitur Inti
+
+- Real-time Activity Monitoring: status Active/Idle/Distraction secara real-time.
+- Automatic Screenshot Capture: screenshot otomatis selama sesi kerja aktif.
+- App & Website Usage Tracking: pencatatan pemakaian aplikasi & situs web selama jam kerja.
+- User & Access Management: manajemen user, role, dan hak akses.
+
+## Catatan
+
+Time Base memposisikan diri secara eksplisit untuk skema Work From Anywhere (WFA), berbeda dari istilah generik "remote" atau "hybrid" yang dipakai kompetitor. Harga ditampilkan dalam Rupiah (IDR) dengan model kontak langsung, tanpa biaya tersembunyi.

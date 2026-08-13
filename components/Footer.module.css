@@ -1,0 +1,97 @@
+.footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  margin-top: var(--space-24);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  padding-block: var(--space-16);
+}
+
+@media (min-width: 768px) {
+  .inner {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.logoBox {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: var(--space-3) var(--space-4);
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+}
+
+.tagline {
+  font: var(--text-body-sm);
+  font-weight: 600;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  width: fit-content;
+}
+
+.desc {
+  font: var(--text-body-sm);
+  color: var(--color-footer-text-muted);
+  max-width: 32ch;
+}
+
+.colTitle {
+  font: var(--text-h4);
+  color: var(--color-footer-text);
+  margin-bottom: var(--space-4);
+}
+
+.navCol ul,
+.contactCol ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.navCol a {
+  color: var(--color-footer-text-muted);
+  font: var(--text-body-sm);
+  transition: color 0.2s ease;
+}
+
+.navCol a:hover {
+  color: #ffffff;
+}
+
+.contactCol a,
+.contactCol .address {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-footer-text-muted);
+  font: var(--text-body-sm);
+  transition: color 0.2s ease;
+}
+
+.contactCol a:hover {
+  color: #ffffff;
+}
+
+.bottomBar {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-block: var(--space-4);
+}
+
+.bottomBar p {
+  font: var(--text-caption);
+  color: var(--color-footer-text-muted);
+  text-align: center;
+}

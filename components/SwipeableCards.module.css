@@ -1,0 +1,81 @@
+.wrapper {
+  width: 100%;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-6);
+}
+
+.item {
+  min-width: 0;
+}
+
+.dots {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .track {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-block: 20px;
+    margin-block: -20px;
+    gap: var(--space-4);
+  }
+
+  .track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .track > .item {
+    flex: 0 0 85vw !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: start;
+  }
+
+  .dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .dot,
+  .dotActive {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    background: transparent;
+    border: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dot::after,
+  .dotActive::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--color-border);
+    transition: all 0.25s ease;
+  }
+
+  .dotActive::after {
+    background: var(--gradient-brand);
+    width: 20px;
+    border-radius: var(--radius-full);
+  }
+}
