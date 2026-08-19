@@ -6,30 +6,24 @@ import { User } from "lucide-react";
 import anime from "animejs";
 import styles from "./BerandaMultiCityHub.module.css";
 
-const NODES = [
-  { city: "Malang", top: "8%", left: "12%", tone: "primary" },
-  { city: "Surabaya", top: "8%", left: "88%", tone: "secondary" },
-  { city: "Jakarta", top: "92%", left: "12%", tone: "primaryLight" },
-  { city: "Bandung", top: "92%", left: "88%", tone: "secondaryLight" },
-] as const;
-
 // Coordinates live in a 100x75 viewBox (matching the container's 4/3 aspect
 // ratio exactly) so the stroke isn't stretched unevenly per axis — that
-// distortion was what made the dashes render unevenly/messily before.
-const LINE_ENDPOINTS = [
-  { x: 12, y: 6 },
-  { x: 88, y: 6 },
-  { x: 12, y: 69 },
-  { x: 88, y: 69 },
-];
-
+// distortion made the dashes render unevenly/messily.
 const CENTER = { x: 50, y: 37.5 };
+
+const NODES = [
+  { city: "Malang", top: "8%", left: "12%", x: 12, y: 6, tone: "primary", side: "left" },
+  { city: "Surabaya", top: "8%", left: "88%", x: 88, y: 6, tone: "secondary", side: "right" },
+  { city: "Jakarta", top: "92%", left: "12%", x: 12, y: 69, tone: "primaryLight", side: "left" },
+  { city: "Bandung", top: "92%", left: "88%", x: 88, y: 69, tone: "secondaryLight", side: "right" },
+] as const;
 
 /**
  * BerandaMultiCityHub — radial network diagram: "Dashboard Timebase" hub
  * node connected to 4 city nodes (Malang, Surabaya, Jakarta, Bandung).
- * Replaces the dashboard-widget + city-pill treatment with a lighter,
- * more illustrative visual for the multi-city monitoring claim.
+ * Dashed lines and city labels are colored per side (purple for
+ * Malang/Jakarta, orange for Surabaya/Bandung) to match the reference
+ * layout; center hub uses the dark gauge-mark icon in a circular frame.
  */
 export default function BerandaMultiCityHub() {
   const dashRefs = useRef<(SVGPathElement | null)[]>([]);
@@ -69,27 +63,29 @@ export default function BerandaMultiCityHub() {
   return (
     <div className={styles.hub} role="img" aria-label="Diagram jaringan Dashboard Timebase terhubung ke tim di Malang, Surabaya, Jakarta, dan Bandung">
       <svg className={styles.lines} viewBox="0 0 100 75" aria-hidden="true">
-        {LINE_ENDPOINTS.map((point, i) => (
+        {NODES.map((node, i) => (
           <path
-            key={point.x + "-" + point.y}
+            key={node.city}
             ref={(el) => {
               dashRefs.current[i] = el;
             }}
-            d={`M${CENTER.x},${CENTER.y} L${point.x},${point.y}`}
-            className={styles.dashLine}
+            d={`M${CENTER.x},${CENTER.y} L${node.x},${node.y}`}
+            className={`${styles.dashLine} ${styles[`line-${node.side}`]}`}
           />
         ))}
       </svg>
 
       <div className={styles.center}>
-        <span className={styles.centerIcon}>
-          <Image
-            src="/assets/logo-timebase-icon-gradient.png"
-            alt="Logo ikon Timebase"
-            title="Timebase"
-            width={64}
-            height={64}
-          />
+        <span className={styles.centerIconRing}>
+          <span className={styles.centerIconCrop}>
+            <Image
+              src="/assets/logo-timebase-icon-gauge.png"
+              alt="Logo ikon Timebase"
+              title="Timebase"
+              width={70}
+              height={70}
+            />
+          </span>
         </span>
         <span className={styles.centerLabel}>Dashboard Timebase</span>
       </div>
@@ -106,7 +102,7 @@ export default function BerandaMultiCityHub() {
           <span className={`${styles.nodeIcon} ${styles[node.tone]}`} aria-hidden="true">
             <User size={18} aria-hidden="true" />
           </span>
-          <span className={styles.nodeLabel}>{node.city}</span>
+          <span className={`${styles.nodeLabel} ${styles[`label-${node.side}`]}`}>{node.city}</span>
         </div>
       ))}
     </div>
