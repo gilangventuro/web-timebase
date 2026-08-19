@@ -66,6 +66,10 @@
   }
 }
 
+.navLinkActive {
+  color: var(--color-secondary) !important;
+}
+
 .actions {
   display: flex;
   align-items: center;

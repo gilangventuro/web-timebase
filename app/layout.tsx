@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, DM_Sans } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Header from "@/components/Header";
@@ -71,25 +70,10 @@ export const metadata: Metadata = {
   },
 };
 
-const themeInitScript = `
-(function () {
-  try {
-    var stored = window.localStorage.getItem('timebase-theme');
-    var theme = stored === 'dark' || stored === 'light'
-      ? stored
-      : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', theme);
-  } catch (e) {}
-})();
-`;
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${spaceGrotesk.variable} ${dmSans.variable}`} suppressHydrationWarning>
-      <body suppressHydrationWarning>
-        <Script id="timebase-theme-init" strategy="beforeInteractive">
-          {themeInitScript}
-        </Script>
+    <html lang="id" className={`${spaceGrotesk.variable} ${dmSans.variable}`}>
+      <body>
         <SmoothScrollProvider>
           <Header />
           <main>{children}</main>

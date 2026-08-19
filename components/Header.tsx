@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
 import { CONTACT_WA_LINK, NAV_LINKS, SITE_NAME } from "@/lib/site";
 import styles from "./Header.module.css";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -41,18 +42,25 @@ export default function Header() {
 
         <nav className={styles.navDesktop} aria-label="Navigasi utama">
           <ul>
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} title={`${SITE_NAME} - ${link.label}`}>
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    title={`${SITE_NAME} - ${link.label}`}
+                    className={isActive ? styles.navLinkActive : undefined}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
         <div className={styles.actions}>
-          <ThemeToggle />
           <a
             href={CONTACT_WA_LINK}
             target="_blank"
@@ -82,13 +90,22 @@ export default function Header() {
         aria-hidden={!menuOpen}
       >
         <ul>
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <Link href={link.href} onClick={() => setMenuOpen(false)} title={`${SITE_NAME} - ${link.label}`}>
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  title={`${SITE_NAME} - ${link.label}`}
+                  className={isActive ? styles.navLinkActive : undefined}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
           <li>
             <a
               href={CONTACT_WA_LINK}

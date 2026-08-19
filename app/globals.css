@@ -81,45 +81,6 @@
   color-scheme: light;
 }
 
-/* ---- Neutral Palette: DARK (system preference, unless user picked light) ---- */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --color-bg: #0b0f1a;
-    --color-bg-alt: #12172a;
-    --color-surface: #151b2c;
-    --color-surface-glass: rgba(21, 27, 44, 0.55);
-    --color-text: #f1f5f9;
-    --color-text-muted: #94a3b8;
-    --color-border: rgba(255, 255, 255, 0.12);
-    --color-header-bg: #151b2c;
-    color-scheme: dark;
-  }
-}
-
-/* ---- Neutral Palette: DARK (explicit manual toggle wins both directions) ---- */
-:root[data-theme="dark"] {
-  --color-bg: #0b0f1a;
-  --color-bg-alt: #12172a;
-  --color-surface: #151b2c;
-  --color-surface-glass: rgba(21, 27, 44, 0.55);
-  --color-text: #f1f5f9;
-  --color-text-muted: #94a3b8;
-  --color-border: rgba(255, 255, 255, 0.12);
-  --color-header-bg: #151b2c;
-  color-scheme: dark;
-}
-
-:root[data-theme="light"] {
-  --color-bg: #f8fafc;
-  --color-bg-alt: #f1eefb;
-  --color-surface: #ffffff;
-  --color-surface-glass: rgba(255, 255, 255, 0.65);
-  --color-text: #0f172a;
-  --color-text-muted: #64748b;
-  --color-border: rgba(15, 23, 42, 0.1);
-  --color-header-bg: #ffffff;
-  color-scheme: light;
-}
 
 * {
   box-sizing: border-box;
@@ -204,12 +165,12 @@ ol {
   width: 100%;
   max-width: var(--container-xl);
   margin-inline: auto;
-  padding-inline: var(--space-4);
+  padding-inline: var(--space-6);
 }
 
 @media (min-width: 1024px) {
   .container {
-    padding-inline: var(--space-8);
+    padding-inline: var(--space-12);
   }
 }
 
