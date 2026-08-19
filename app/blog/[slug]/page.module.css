@@ -23,8 +23,9 @@
   overflow: hidden;
   position: relative;
   background:
-    radial-gradient(ellipse 60% 55% at 12% -10%, rgba(124, 58, 237, 0.18), transparent 60%),
-    radial-gradient(ellipse 55% 50% at 100% 0%, rgba(249, 115, 22, 0.16), transparent 60%),
+    radial-gradient(ellipse 75% 65% at 8% -20%, rgba(124, 58, 237, 0.45), transparent 65%),
+    radial-gradient(ellipse 60% 55% at 48% -25%, rgba(236, 72, 153, 0.3), transparent 62%),
+    radial-gradient(ellipse 70% 65% at 100% -10%, rgba(249, 115, 22, 0.42), transparent 65%),
     var(--color-bg);
 }
 
