@@ -13,12 +13,17 @@ const NODES = [
   { city: "Bandung", top: "92%", left: "88%", tone: "secondaryLight" },
 ] as const;
 
+// Coordinates live in a 100x75 viewBox (matching the container's 4/3 aspect
+// ratio exactly) so the stroke isn't stretched unevenly per axis — that
+// distortion was what made the dashes render unevenly/messily before.
 const LINE_ENDPOINTS = [
-  { x: 12, y: 8 },
-  { x: 88, y: 8 },
-  { x: 12, y: 92 },
-  { x: 88, y: 92 },
+  { x: 12, y: 6 },
+  { x: 88, y: 6 },
+  { x: 12, y: 69 },
+  { x: 88, y: 69 },
 ];
+
+const CENTER = { x: 50, y: 37.5 };
 
 /**
  * BerandaMultiCityHub — radial network diagram: "Dashboard Timebase" hub
@@ -63,14 +68,14 @@ export default function BerandaMultiCityHub() {
 
   return (
     <div className={styles.hub} role="img" aria-label="Diagram jaringan Dashboard Timebase terhubung ke tim di Malang, Surabaya, Jakarta, dan Bandung">
-      <svg className={styles.lines} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <svg className={styles.lines} viewBox="0 0 100 75" aria-hidden="true">
         {LINE_ENDPOINTS.map((point, i) => (
           <path
             key={point.x + "-" + point.y}
             ref={(el) => {
               dashRefs.current[i] = el;
             }}
-            d={`M50,50 L${point.x},${point.y}`}
+            d={`M${CENTER.x},${CENTER.y} L${point.x},${point.y}`}
             className={styles.dashLine}
           />
         ))}
