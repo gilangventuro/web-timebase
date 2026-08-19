@@ -170,6 +170,8 @@
 /* ===== PROBLEM ===== */
 .problem {
   padding-block: var(--space-24);
+  background: var(--color-bg-alt);
+  border-block: 1px solid var(--color-border);
 }
 
 .problemCard {
