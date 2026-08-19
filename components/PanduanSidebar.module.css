@@ -17,57 +17,54 @@
   }
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 28px;
-}
-
-.brandMark {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background: var(--gradient-brand);
-  color: #fff;
-  font-weight: 800;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.brandTitle {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.2;
-  color: var(--panduan-ink);
-}
-
-.brandSub {
-  font-size: 11px;
-  color: var(--panduan-muted);
-}
-
 .navGroup {
-  margin-bottom: 20px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--panduan-border);
 }
 
 .navLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--panduan-muted);
   text-transform: uppercase;
-  margin-bottom: 6px;
-  padding: 0 10px;
+  padding: 10px;
+  border-radius: 6px;
 }
 
-.navGroup ul {
+.navLabel:hover {
+  background: #eef2f1;
+}
+
+.chevron,
+.chevronOpen {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.navList {
   list-style: none;
   margin: 0;
   padding: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.navListOpen {
+  list-style: none;
+  margin: 0;
+  padding: 2px 0 8px;
 }
 
 .navLink,
