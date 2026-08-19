@@ -241,6 +241,8 @@
 .caraKerja {
   padding-block: var(--space-24);
   scroll-margin-top: var(--header-height-mobile);
+  background: var(--color-bg-alt);
+  border-block: 1px solid var(--color-border);
 }
 
 @media (min-width: 768px) {
