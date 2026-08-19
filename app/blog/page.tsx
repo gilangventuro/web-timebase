@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, EyeOff, Scale, ClipboardList } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import SwipeableCards from "@/components/SwipeableCards";
 import BlogIllustrationAccountability from "@/components/BlogIllustrationAccountability";
@@ -28,24 +28,6 @@ export const metadata: Metadata = {
     description: PAGE_DESCRIPTION,
   },
 };
-
-const CHALLENGES = [
-  {
-    icon: EyeOff,
-    title: "Takut Dituduh Mengintai",
-    desc: "Micromanagement menurunkan produktivitas hingga 55% dan memicu turnover karyawan.",
-  },
-  {
-    icon: Scale,
-    title: "Bingung Aturan UU PDP",
-    desc: "Consent tertulis wajib sebelum memantau karyawan, namun caranya sering tidak jelas.",
-  },
-  {
-    icon: ClipboardList,
-    title: "Kebijakan Kerja Belum Terukur",
-    desc: "Direksi minta bukti produktivitas, sementara laporan masih manual dan mudah bias.",
-  },
-];
 
 const FAQ_ITEMS = [
   {
@@ -143,32 +125,6 @@ export default function BlogIndexPage() {
                 <ArrowRight size={18} aria-hidden="true" />
               </a>
             </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* SECTION 2: Tantangan Nyata Tim Anda */}
-      <section className={styles.challenge}>
-        <div className="container">
-          <AnimatedSection as="div" className={styles.sectionHead}>
-            <h2 className={styles.sectionTitle}>Tantangan Nyata Tim Anda</h2>
-          </AnimatedSection>
-
-          <AnimatedSection as="div">
-            <SwipeableCards ariaLabel="Tantangan nyata tim dalam monitoring karyawan">
-              {CHALLENGES.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div className={`${styles.challengeCard} stagger-item`} key={item.title} tabIndex={0}>
-                    <span className={styles.challengeIconWrap}>
-                      <Icon size={24} aria-hidden="true" />
-                    </span>
-                    <h3 className={styles.cardTitle}>{item.title}</h3>
-                    <p className={styles.cardDesc}>{item.desc}</p>
-                  </div>
-                );
-              })}
-            </SwipeableCards>
           </AnimatedSection>
         </div>
       </section>

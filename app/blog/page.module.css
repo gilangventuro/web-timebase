@@ -100,57 +100,6 @@
   max-width: 68ch;
 }
 
-.cardTitle {
-  font: var(--text-h4);
-  color: var(--color-text);
-  margin-bottom: var(--space-2);
-}
-
-.cardDesc {
-  font: var(--text-body-sm);
-  color: var(--color-text-muted);
-}
-
-/* ===== SECTION: Tantangan Nyata Tim Anda ===== */
-.challenge {
-  padding-block: var(--space-24);
-  background: var(--color-surface);
-}
-
-.challengeCard {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  height: 100%;
-  padding: var(--space-6);
-  border-radius: var(--radius-xl);
-  background: var(--color-surface-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-border);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.challengeCard:hover,
-.challengeCard:focus-visible {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
-}
-
-.challengeIconWrap {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-full);
-  background: rgba(124, 58, 237, 0.12);
-  color: var(--color-primary);
-  margin-bottom: var(--space-4);
-}
-
 /* ===== SECTION: Artikel Pilihan Kami ===== */
 .articles {
   padding-block: var(--space-24);
