@@ -31,7 +31,7 @@
   --color-text: #0f172a;
   --color-text-muted: #64748b;
   --color-border: rgba(15, 23, 42, 0.1);
-  --color-header-bg: rgba(248, 250, 252, 0.85);
+  --color-header-bg: #ffffff;
   --color-footer-bg: #0b0f1a;
   --color-footer-text: #f1f5f9;
   --color-footer-text-muted: #94a3b8;
@@ -91,7 +91,7 @@
     --color-text: #f1f5f9;
     --color-text-muted: #94a3b8;
     --color-border: rgba(255, 255, 255, 0.12);
-    --color-header-bg: rgba(11, 15, 26, 0.75);
+    --color-header-bg: #151b2c;
     color-scheme: dark;
   }
 }
@@ -105,7 +105,7 @@
   --color-text: #f1f5f9;
   --color-text-muted: #94a3b8;
   --color-border: rgba(255, 255, 255, 0.12);
-  --color-header-bg: rgba(11, 15, 26, 0.75);
+  --color-header-bg: #151b2c;
   color-scheme: dark;
 }
 
@@ -117,7 +117,7 @@
   --color-text: #0f172a;
   --color-text-muted: #64748b;
   --color-border: rgba(15, 23, 42, 0.1);
-  --color-header-bg: rgba(248, 250, 252, 0.85);
+  --color-header-bg: #ffffff;
   color-scheme: light;
 }
 
