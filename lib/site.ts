@@ -8,8 +8,8 @@ export const OPERATIONAL_AREA = "Kota Malang, Jawa Timur";
 
 export const NAV_LINKS = [
   { label: "Beranda", href: "/" },
-  { label: "Fitur & Cara Kerja", href: "/fitur" },
-  { label: "Keamanan & Kepatuhan", href: "/keamanan-kepatuhan" },
+  { label: "Cara Kerja", href: "/fitur" },
+  { label: "Keamanan", href: "/keamanan-kepatuhan" },
   { label: "Panduan", href: "/panduan" },
   { label: "Blog", href: "/blog" },
 ] as const;
