@@ -28,15 +28,17 @@
   stroke: var(--color-secondary-light);
 }
 
+/* .center is sized to exactly the icon ring (not icon+label together) so
+   translate(-50%,-50%) centers it precisely on the SVG lines' shared
+   start point; the label is a separately positioned child below it —
+   keeping it out of this box is what keeps the two anchors in sync. */
 .center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
+  width: 76px;
+  height: 76px;
   z-index: 1;
 }
 
@@ -70,6 +72,10 @@
 }
 
 .centerLabel {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 50%;
+  transform: translateX(-50%);
   font: var(--text-body-sm);
   font-weight: 700;
   color: var(--color-text);
@@ -77,13 +83,14 @@
   white-space: nowrap;
 }
 
+/* Same principle as .center: sized to exactly the icon (40x40) so the
+   translate(-50%,-50%) anchor matches the SVG line endpoint precisely;
+   the label is positioned independently below via .nodeLabel. */
 .node {
   position: absolute;
   transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-1);
+  width: 40px;
+  height: 40px;
   z-index: 1;
 }
 
@@ -115,6 +122,10 @@
 }
 
 .nodeLabel {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  left: 50%;
+  transform: translateX(-50%);
   font: var(--text-caption);
   font-weight: 600;
   white-space: nowrap;

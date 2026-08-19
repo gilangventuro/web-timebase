@@ -27,11 +27,15 @@ const NODES = [
  */
 export default function BerandaMultiCityHub() {
   const dashRefs = useRef<(SVGPathElement | null)[]>([]);
-  const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const nodeIconRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
     const dashes = dashRefs.current.filter(Boolean) as SVGPathElement[];
-    const nodes = nodeRefs.current.filter(Boolean) as HTMLDivElement[];
+    // Animate the icon span, NOT the positioned .node wrapper: anime.js
+    // writes a fresh inline `transform` for `scale`, which would silently
+    // replace (not combine with) the wrapper's CSS `translate(-50%,-50%)`
+    // positioning and knock every node visibly off the line endpoints.
+    const nodes = nodeIconRefs.current.filter(Boolean) as HTMLSpanElement[];
     if (dashes.length === 0) return;
 
     const dashAnimation = anime({
@@ -91,15 +95,14 @@ export default function BerandaMultiCityHub() {
       </div>
 
       {NODES.map((node, i) => (
-        <div
-          key={node.city}
-          ref={(el) => {
-            nodeRefs.current[i] = el;
-          }}
-          className={styles.node}
-          style={{ top: node.top, left: node.left }}
-        >
-          <span className={`${styles.nodeIcon} ${styles[node.tone]}`} aria-hidden="true">
+        <div key={node.city} className={styles.node} style={{ top: node.top, left: node.left }}>
+          <span
+            ref={(el) => {
+              nodeIconRefs.current[i] = el;
+            }}
+            className={`${styles.nodeIcon} ${styles[node.tone]}`}
+            aria-hidden="true"
+          >
             <User size={18} aria-hidden="true" />
           </span>
           <span className={`${styles.nodeLabel} ${styles[`label-${node.side}`]}`}>{node.city}</span>
