@@ -110,21 +110,8 @@ export default function BlogIndexPage() {
       <section className={styles.hero}>
         <div className={`container ${styles.heroInner}`}>
           <AnimatedSection as="div" className={styles.heroText}>
-            <span className={styles.badge}>Blog Timebase</span>
             <h1 className={styles.headline}>Wawasan Monitoring Karyawan</h1>
             <p className={styles.subheadline}>{PAGE_DESCRIPTION}</p>
-            <div className={styles.heroCtas}>
-              <a
-                href={CONTACT_WA_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.ctaPrimary}
-                title="Request Demo Gratis Timebase via WhatsApp"
-              >
-                Request Demo Gratis
-                <ArrowRight size={18} aria-hidden="true" />
-              </a>
-            </div>
           </AnimatedSection>
         </div>
       </section>
