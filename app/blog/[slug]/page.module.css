@@ -21,6 +21,11 @@
 .hero {
   padding-block: var(--space-8) var(--space-16);
   overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(ellipse 60% 55% at 12% -10%, rgba(124, 58, 237, 0.18), transparent 60%),
+    radial-gradient(ellipse 55% 50% at 100% 0%, rgba(249, 115, 22, 0.16), transparent 60%),
+    var(--color-bg);
 }
 
 .heroInner {

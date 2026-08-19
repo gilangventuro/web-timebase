@@ -129,6 +129,13 @@ body {
 
 html {
   scroll-behavior: auto;
+  scroll-padding-top: var(--header-height-mobile);
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: var(--header-height-desktop);
+  }
 }
 
 body {
@@ -139,6 +146,18 @@ body {
   font-family: var(--font-body);
   transition: background-color 0.3s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Header is position: fixed — compensate so content doesn't render underneath it. */
+main {
+  display: block;
+  padding-top: var(--header-height-mobile);
+}
+
+@media (min-width: 768px) {
+  main {
+    padding-top: var(--header-height-desktop);
+  }
 }
 
 h1,
