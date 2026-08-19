@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import SwipeableCards from "@/components/SwipeableCards";
-import DashboardMock from "@/components/DashboardMock";
+import BerandaMultiCityHub from "@/components/BerandaMultiCityHub";
 import BerandaCaraKerjaSteps from "@/components/BerandaCaraKerjaSteps";
 import BerandaFaqAccordion from "@/components/BerandaFaqAccordion";
 import { SITE_URL, SITE_NAME, SITE_TAGLINE, CONTACT_WA_LINK, CONTACT_EMAIL } from "@/lib/site";
@@ -87,8 +87,6 @@ const SOLUTION_BENEFITS = [
     desc: "Fokus tunggal pada akuntabilitas kinerja real-time, bukan modul serba-guna seperti payroll.",
   },
 ];
-
-const MULTI_CITY = ["Malang", "Surabaya", "Jakarta", "Bandung"];
 
 const TESTIMONIAL_SLOTS = [1, 2, 3];
 
@@ -299,16 +297,8 @@ export default function HomePage() {
           </AnimatedSection>
 
           <div className={styles.solutionGrid}>
-            <AnimatedSection as="div" className={styles.solutionVisual} delay={100} ambient>
-              <p className={styles.multiCityCaption}>Akuntabilitas Real-Time Tim Kerja Multi-Kota — Timebase</p>
-              <ul className={styles.cityPills} aria-label="Kota operasional tim kerja Timebase">
-                {MULTI_CITY.map((city) => (
-                  <li className={`${styles.cityPill} stagger-item`} key={city}>
-                    {city}
-                  </li>
-                ))}
-              </ul>
-              <DashboardMock />
+            <AnimatedSection as="div" className={styles.solutionVisual} delay={100}>
+              <BerandaMultiCityHub />
               <blockquote className={styles.pullQuote}>
                 <p>&ldquo;Timebase adalah accountability tool, bukan surveillance tool.&rdquo;</p>
               </blockquote>
