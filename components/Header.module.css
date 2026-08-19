@@ -30,26 +30,15 @@
   flex-shrink: 0;
 }
 
-.logoDesktop {
-  display: none;
+.logo {
   width: auto;
-  height: 36px;
-  object-fit: contain;
-}
-
-.logoMobile {
-  display: block;
-  width: 40px;
-  height: 40px;
+  height: 32px;
   object-fit: contain;
 }
 
 @media (min-width: 768px) {
-  .logoDesktop {
-    display: block;
-  }
-  .logoMobile {
-    display: none;
+  .logo {
+    height: 36px;
   }
 }
 

@@ -59,98 +59,71 @@
   color: var(--color-text-muted);
 }
 
-.statusGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.employeeRows {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-3);
   margin-bottom: var(--space-6);
 }
 
-@media (max-width: 420px) {
-  .statusGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.statusCard {
+.employeeRow {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   padding: var(--space-3);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
 }
 
-.statusBadge {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
   border-radius: var(--radius-full);
+  background: var(--gradient-brand);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
 }
 
-.statusLabel {
+.employeeInfo {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.employeeName {
+  font: var(--text-body-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.employeeStatus {
   font: var(--text-caption);
   color: var(--color-text-muted);
 }
 
-.statusValue {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--color-text);
-}
-
-.chart {
-  display: flex;
-  align-items: flex-end;
-  gap: 4px;
-  height: 88px;
-  padding: var(--space-3);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  margin-bottom: var(--space-6);
-}
-
-.bar {
-  flex: 1 1 auto;
-  height: 30%;
-  border-radius: 3px;
-  background: var(--gradient-brand);
-  opacity: 0.85;
-}
-
-.controls {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.control,
-.controlActive {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  min-height: 44px;
+.statusDot {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
   border-radius: var(--radius-full);
-  border: 1px solid var(--color-border);
-  background: transparent;
-  color: var(--color-text);
-  transition: all 0.2s ease;
+  background: var(--color-success);
 }
 
-.controlActive {
-  background: var(--gradient-brand);
-  color: #ffffff;
-  border-color: transparent;
-}
-
-.control:hover {
-  background: var(--color-border);
+.panelFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  font: var(--text-caption);
+  font-weight: 600;
+  color: var(--color-text-muted);
 }
 
 .liveTag {

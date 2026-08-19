@@ -19,6 +19,27 @@
   text-align: center;
 }
 
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  font: var(--text-body-sm);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.eyebrowDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-brand);
+}
+
 .headline {
   font: var(--text-h1);
   font-size: clamp(2.1rem, 4.4vw, 3rem);
@@ -29,38 +50,10 @@
 .subheadline {
   font: var(--text-body-lg);
   color: var(--color-text-muted);
-  max-width: 56ch;
+  max-width: 62ch;
 }
 
-.featureStrip {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-3);
-  margin-top: var(--space-2);
-}
-
-.featurePill {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-full);
-  border: 1.5px solid transparent;
-  background:
-    linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
-    var(--gradient-brand) border-box;
-  color: var(--color-text);
-  font: var(--text-body-sm);
-  font-weight: 600;
-}
-
-.featurePill svg {
-  color: var(--color-primary);
-  flex-shrink: 0;
-}
-
-.heroCtas {
+.heroCtaRow {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -72,6 +65,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2);
   padding: 16px 32px;
   min-height: 44px;
   border-radius: var(--radius-lg);
@@ -84,6 +78,57 @@
 .ctaPrimary:hover {
   filter: brightness(1.08);
   transform: scale(1.02);
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 16px 32px;
+  min-height: 44px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ctaSecondary:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-card);
+}
+
+.ctaSecondary svg {
+  color: var(--color-primary);
+}
+
+.statsRow {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.statValue {
+  font: var(--text-h2);
+  font-size: clamp(1.75rem, 3.2vw, 2.25rem);
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.statLabel {
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
 }
 
 /* ===== SHARED SECTION HEAD ===== */
@@ -110,56 +155,41 @@
   max-width: 64ch;
 }
 
-/* ===== SOLUTION (Empat Modul Monitoring Inti) ===== */
-.solution {
+/* ===== SHARED CARD TEXT ===== */
+.cardTitle {
+  font: var(--text-h4);
+  font-size: 1.05rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.cardDesc {
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+/* ===== SECTION 2: MASALAH MONITORING MANUAL ===== */
+.problem {
   padding-block: var(--space-24);
   background: var(--color-surface);
 }
 
-.solutionCard {
-  position: relative;
+.problemCard {
   height: 100%;
   padding: var(--space-6);
   border-radius: var(--radius-xl);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: var(--color-surface-glass);
+  background: var(--color-bg);
   border: 1px solid var(--color-border);
-  overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  isolation: isolate;
 }
 
-.solutionCard::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: var(--gradient-brand);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  z-index: -1;
-  animation: fiturSolutionBorderPulse 3.6s ease-in-out infinite;
-}
-
-@keyframes fiturSolutionBorderPulse {
-  0%,
-  100% {
-    opacity: 0.45;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.solutionCard:hover {
+.problemCard:hover,
+.problemCard:focus-visible {
   transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
 }
 
-.solutionIconWrap {
+.problemIconWrap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -171,38 +201,223 @@
   margin-bottom: var(--space-4);
 }
 
-.cardTitle {
-  font: var(--text-h4);
-  color: var(--color-text);
-  margin-bottom: var(--space-2);
-}
-
-.cardDesc {
-  font: var(--text-body);
-  font-weight: 600;
-  color: var(--color-text);
-  margin-bottom: var(--space-3);
-}
-
-.cardDetail {
-  font: var(--text-body-sm);
-  color: var(--color-text-muted);
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--color-border);
-}
-
-/* ===== SETUP TANPA TIM IT (problem repurposed) ===== */
-.setup {
+/* ===== SECTION 3: CARA KERJA TIMEBASE ===== */
+.caraKerja {
   padding-block: var(--space-24);
+  scroll-margin-top: var(--header-height-desktop);
 }
 
-/* ===== FAQ ===== */
-.faq {
+/* ===== SECTION 4: FITUR REAL-TIME MENDALAM ===== */
+.realtime {
   padding-block: var(--space-24);
   background: var(--color-surface);
 }
 
-/* ===== CTA ===== */
+.realtimeMockupWrap {
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: var(--space-12);
+}
+
+.realtimeBenefits {
+  margin-bottom: var(--space-8);
+}
+
+.benefitCard {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  height: 100%;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.benefitCard:hover,
+.benefitCard:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.benefitIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-brand);
+  color: #ffffff;
+}
+
+.highlightCard,
+.statusBlock {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  max-width: 760px;
+  margin-inline: auto;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+}
+
+.highlightCard {
+  margin-bottom: var(--space-6);
+  background: var(--gradient-brand);
+}
+
+.highlightCard .cardTitle,
+.highlightCard .cardDesc {
+  color: #ffffff;
+}
+
+.highlightCard .benefitIconWrap {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.statusBlock {
+  background: var(--color-bg);
+}
+
+/* ===== SECTION 5: ARSITEKTUR DI BALIK TIMEBASE ===== */
+.architecture {
+  padding-block: var(--space-24);
+}
+
+.archCard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.archCard:hover,
+.archCard:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.archCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-1);
+}
+
+.archIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-brand);
+  color: #ffffff;
+}
+
+.terminalDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-success);
+}
+
+.techName {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  letter-spacing: 0.01em;
+}
+
+/* ===== SECTION 6: ANIMASI CARA KERJA (Lihat Cara Kerja Timebase) ===== */
+.animation {
+  padding-block: var(--space-24);
+  background: var(--color-surface);
+}
+
+.animationGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .animationGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  }
+}
+
+.animationDashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.animationCaption {
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+  max-width: 480px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.stepIndicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stepIndicator:hover,
+.stepIndicator:focus-visible {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-card);
+}
+
+.stepIndicatorIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-brand);
+  color: #ffffff;
+}
+
+.stepIndicatorLabel {
+  font: var(--text-body-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ===== SECTION 7: FAQ ===== */
+.faq {
+  padding-block: var(--space-24);
+}
+
+/* ===== SECTION 8: CTA PENUTUP ===== */
 .cta {
   padding-block: var(--space-24);
   background: var(--gradient-brand);
@@ -233,6 +448,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2);
   margin-top: var(--space-2);
   padding: 16px 40px;
   min-height: 44px;

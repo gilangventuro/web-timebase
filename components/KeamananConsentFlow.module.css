@@ -1,0 +1,134 @@
+.flow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2);
+  max-width: 920px;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .flow {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+}
+
+.stepWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .stepWrap {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.step:hover,
+.step:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-brand);
+  color: #ffffff;
+  margin-bottom: var(--space-1);
+}
+
+.stepTitle {
+  font: var(--text-h4);
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.stepDesc {
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-primary);
+  padding: var(--space-2) 0;
+  transform: rotate(90deg);
+}
+
+@media (min-width: 768px) {
+  .arrow {
+    transform: none;
+    padding-inline: var(--space-1);
+  }
+}
+
+/* ---- Dynamic Pulse variant (section "Bagaimana Data Anda Diamankan") ---- */
+.flowPulse .step {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+    var(--gradient-brand) border-box;
+  border: 1.5px solid transparent;
+}
+
+.flowPulse .arrow {
+  animation: keamananArrowFlow 1.8s ease-in-out infinite;
+}
+
+.flowPulse .stepWrap:nth-child(3) .arrow {
+  animation-delay: 0.3s;
+}
+
+@keyframes keamananArrowFlow {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateX(0) rotate(90deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(4px) rotate(90deg);
+  }
+}
+
+@media (min-width: 768px) {
+  @keyframes keamananArrowFlow {
+    0%,
+    100% {
+      opacity: 0.45;
+      transform: translateX(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+  }
+}

@@ -1,145 +1,81 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import anime from "animejs";
-import { Pause, Play, Square } from "lucide-react";
 import styles from "./DashboardMock.module.css";
 
-const STATUS_CARDS = [
-  { key: "active", label: "Active", value: "68%", colorVar: "--color-success" },
-  { key: "idle", label: "Idle", value: "22%", colorVar: "--color-warning" },
-  { key: "distraction", label: "Distraction", value: "10%", colorVar: "--color-error" },
+const EMPLOYEES = [
+  { initials: "AR", name: "Andi R.", time: "08:02:00", status: "Sedang Bekerja" },
+  { initials: "DP", name: "Dewi P.", time: "07:45:00", status: "Sedang Bekerja" },
 ] as const;
 
-const BAR_COUNT = 12;
-
-// Varied static heights so the chart reads as real data immediately from
-// first paint (server-rendered, before any JS has run) — Anime.js's
-// looping animation only ever enhances this baseline. Without an explicit
-// baseline, the very first Anime.js tick supplies the initial "from"
-// value, and if that tick is delayed (observed to happen well outside
-// normal interactive timing in some render/capture pipelines), every bar
-// sits at its raw CSS default in the meantime; an identical flat default
-// reads as an empty/broken chart rather than a populated one.
-const BAR_HEIGHTS = [42, 68, 35, 74, 50, 85, 44, 60, 38, 55, 78, 47];
-
 /**
- * DashboardMock — "Command Center" interactive dashboard mock.
- * Replaces the (unavailable) company profile video for the Beranda hero.
- * Ref: PLAN-beranda.md Section 4 (heroImage) & PLAN-DESIGN-SYSTEM.md 6.5.
+ * DashboardMock — "Dashboard Real-Time Timebase" widget.
+ * Fallback visual for the unavailable company profile video: illustrates
+ * the live activity dashboard (motion signature "Dynamic Pulse") reused
+ * across Beranda, Fitur, Keamanan & Kepatuhan, and Panduan.
  */
 export default function DashboardMock() {
-  const barsWrapRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<anime.AnimeInstance | null>(null);
-  const [playState, setPlayState] = useState<"playing" | "paused" | "stopped">("playing");
+  const rowsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const bars = barsWrapRef.current?.querySelectorAll<HTMLElement>("[data-bar]");
-    if (!bars || bars.length === 0) return;
+    const rows = rowsRef.current?.querySelectorAll<HTMLElement>("[data-row]");
+    if (!rows || rows.length === 0) return;
 
     const animation = anime({
-      targets: bars,
-      height: () => `${anime.random(18, 92)}%`,
-      duration: () => anime.random(900, 1700),
+      targets: rows,
+      opacity: [0.6, 1],
+      translateX: [-4, 0],
+      duration: 1400,
       easing: "easeInOutSine",
       direction: "alternate",
       loop: true,
-      delay: anime.stagger(90),
+      delay: anime.stagger(300),
     });
-    animationRef.current = animation;
 
     return () => {
       animation.pause();
-      anime.remove(bars);
-      animationRef.current = null;
+      anime.remove(rows);
     };
   }, []);
 
-  const handlePlay = () => {
-    animationRef.current?.play();
-    setPlayState("playing");
-  };
-
-  const handlePause = () => {
-    animationRef.current?.pause();
-    setPlayState("paused");
-  };
-
-  const handleStop = () => {
-    animationRef.current?.pause();
-    const bars = barsWrapRef.current?.querySelectorAll<HTMLElement>("[data-bar]");
-    if (bars) {
-      anime.set(bars, { height: "12%" });
-    }
-    setPlayState("stopped");
-  };
-
   return (
-    <div className={styles.panel} role="group" aria-label="Mock dashboard Command Center Time Base - status monitoring karyawan real-time">
+    <div
+      className={styles.panel}
+      role="group"
+      aria-label="Mock dashboard Timebase - status aktivitas karyawan real-time"
+    >
       <div className={styles.panelHeader}>
         <span className={styles.panelDot} aria-hidden="true" />
         <span className={styles.panelDot} aria-hidden="true" />
         <span className={styles.panelDot} aria-hidden="true" />
-        <span className={styles.panelTitle}>Command Center — Live Status Tim</span>
-      </div>
-
-      <div className={styles.statusGrid}>
-        {STATUS_CARDS.map((card) => (
-          <div key={card.key} className={styles.statusCard}>
-            <span
-              className={styles.statusBadge}
-              style={{ background: `var(${card.colorVar})` }}
-              aria-hidden="true"
-            />
-            <div>
-              <p className={styles.statusLabel}>{card.label}</p>
-              <p className={styles.statusValue}>{card.value}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className={styles.chart} ref={barsWrapRef} aria-hidden="true">
-        {Array.from({ length: BAR_COUNT }).map((_, i) => (
-          <span key={i} data-bar className={styles.bar} style={{ height: `${BAR_HEIGHTS[i % BAR_HEIGHTS.length]}%` }} />
-        ))}
-      </div>
-
-      <div className={styles.controls}>
-        <button
-          type="button"
-          className={playState === "playing" ? styles.controlActive : styles.control}
-          onClick={handlePlay}
-          aria-label="Putar animasi data-viz dashboard"
-          title="Putar"
-          tabIndex={0}
-        >
-          <Play size={18} aria-hidden="true" />
-        </button>
-        <button
-          type="button"
-          className={playState === "paused" ? styles.controlActive : styles.control}
-          onClick={handlePause}
-          aria-label="Jeda animasi data-viz dashboard"
-          title="Jeda"
-          tabIndex={0}
-        >
-          <Pause size={18} aria-hidden="true" />
-        </button>
-        <button
-          type="button"
-          className={playState === "stopped" ? styles.controlActive : styles.control}
-          onClick={handleStop}
-          aria-label="Hentikan animasi data-viz dashboard"
-          title="Berhenti"
-          tabIndex={0}
-        >
-          <Square size={18} aria-hidden="true" />
-        </button>
+        <span className={styles.panelTitle}>Dashboard Real-Time Timebase</span>
         <span className={styles.liveTag}>
           <span className={styles.liveDot} aria-hidden="true" />
           Live
         </span>
+      </div>
+
+      <div className={styles.employeeRows} ref={rowsRef}>
+        {EMPLOYEES.map((employee) => (
+          <div key={employee.name} data-row className={styles.employeeRow}>
+            <span className={styles.avatar} aria-hidden="true">
+              {employee.initials}
+            </span>
+            <div className={styles.employeeInfo}>
+              <p className={styles.employeeName}>{employee.name}</p>
+              <p className={styles.employeeStatus}>
+                {employee.time} — {employee.status}
+              </p>
+            </div>
+            <span className={styles.statusDot} aria-hidden="true" />
+          </div>
+        ))}
+      </div>
+
+      <div className={styles.panelFooter}>
+        <span>Aktif sekarang</span>
+        <span>{EMPLOYEES.length}/{EMPLOYEES.length} anggota</span>
       </div>
     </div>
   );

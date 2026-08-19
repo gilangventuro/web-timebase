@@ -1,4 +1,4 @@
-.list {
+.accordion {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -8,18 +8,17 @@
 
 .item {
   border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border);
   background: var(--color-surface);
+  border: 1px solid var(--color-border);
   overflow: hidden;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: box-shadow 0.25s ease;
 }
 
-.item:hover {
-  border-color: var(--color-primary);
+.item:has(.trigger[aria-expanded="true"]) {
   box-shadow: var(--shadow-card);
 }
 
-.question {
+.questionRow {
   margin: 0;
   font: inherit;
 }
@@ -30,8 +29,7 @@
   justify-content: space-between;
   gap: var(--space-4);
   width: 100%;
-  min-height: 44px;
-  padding: var(--space-4) var(--space-6);
+  padding: var(--space-6);
   background: transparent;
   border: none;
   text-align: left;
@@ -40,27 +38,29 @@
   color: var(--color-text);
 }
 
-.icon,
-.iconOpen {
+.chevron,
+.chevronOpen {
   flex-shrink: 0;
   color: var(--color-primary);
   transition: transform 0.25s ease;
 }
 
-.iconOpen {
+.chevronOpen {
   transform: rotate(180deg);
 }
 
 .panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.3s ease;
+  opacity: 0;
+  transition: grid-template-rows 0.3s ease, opacity 0.25s ease;
 }
 
 .panelOpen {
   display: grid;
   grid-template-rows: 1fr;
-  transition: grid-template-rows 0.3s ease;
+  opacity: 1;
+  transition: grid-template-rows 0.3s ease, opacity 0.3s ease;
 }
 
 .panel > .answer,
@@ -69,9 +69,7 @@
 }
 
 .answer {
-  overflow: hidden;
   min-height: 0;
-  margin: 0;
   padding-inline: var(--space-6);
   font: var(--text-body);
   color: var(--color-text-muted);
@@ -82,5 +80,5 @@
 }
 
 .panelOpen .answer {
-  padding-block: 0 var(--space-6);
+  padding-block-end: var(--space-6);
 }

@@ -1,24 +1,8 @@
-.timeline {
+/* ===== Cara Kerja step card ===== */
+.card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
-  counter-reset: step;
-}
-
-@media (min-width: 1024px) {
-  .timeline {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: var(--space-6);
-  }
-}
-
-.step {
-  position: relative;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  height: 100%;
   gap: var(--space-2);
   padding: var(--space-6);
   border-radius: var(--radius-xl);
@@ -27,16 +11,23 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.step:hover,
-.step:focus-visible {
+.card:hover,
+.card:focus-visible {
   transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-1);
 }
 
 .stepNumber {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   letter-spacing: 0.05em;
   background: var(--gradient-brand);
   -webkit-background-clip: text;
@@ -44,50 +35,159 @@
   color: transparent;
 }
 
-.stepIconWrap {
+.iconWrap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-lg);
   background: var(--gradient-brand);
   color: #ffffff;
-  margin-bottom: var(--space-1);
 }
 
-.stepTitle {
+.cardTitle {
   font: var(--text-h4);
   font-size: 1.05rem;
   color: var(--color-text);
 }
 
-.stepDesc {
+.cardDesc {
   font: var(--text-body-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.mockupSlot {
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+
+/* ===== Generic illustrative mockup panel (form / consent / report) ===== */
+.mockup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+
+.mockupHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-body-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.mockupHeader svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.fieldLabel {
+  font: var(--text-caption);
   color: var(--color-text-muted);
 }
 
-/* Connector between steps: vertical line on mobile, horizontal on desktop */
-.connector {
-  position: absolute;
+.fieldInput {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font: var(--text-body-sm);
+  color: var(--color-text);
+}
+
+.mockupButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
   background: var(--gradient-brand);
-  opacity: 0.35;
+  color: #ffffff;
+  font: var(--text-body-sm);
+  font-weight: 600;
+  text-align: center;
 }
 
-.step .connector {
-  left: var(--space-6);
-  bottom: calc(-1 * var(--space-8) / 2 - 2px);
-  width: 2px;
-  height: calc(var(--space-8) / 2 + 2px);
+.consentText {
+  font: var(--text-caption);
+  color: var(--color-text-muted);
 }
 
-@media (min-width: 1024px) {
-  .step .connector {
-    top: 44px;
-    left: auto;
-    right: calc(-1 * var(--space-6) / 2 - 2px);
-    bottom: auto;
-    width: calc(var(--space-6) / 2 + 2px);
-    height: 2px;
-  }
+.consentCheckRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-caption);
+  color: var(--color-text);
+}
+
+.consentCheckbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  border-radius: var(--radius-sm);
+  background: var(--gradient-brand);
+  color: #ffffff;
+}
+
+/* Step 3: DashboardMock's own panel is already responsive (width:100%,
+   max-width:480px) so it shrinks to fit this card slot without overrides. */
+.dashboardWrap {
+  width: 100%;
+}
+
+/* ===== Step 4: report chart + disabled download button ===== */
+.reportChart {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  height: 72px;
+  padding-inline: var(--space-1);
+}
+
+.reportBar,
+.reportBarAlt {
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--color-primary);
+}
+
+.reportBarAlt {
+  background: var(--color-secondary);
+}
+
+.reportButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font: var(--text-body-sm);
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
+.reportButton svg {
+  color: var(--color-text-muted);
 }

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
-import { NAV_LINKS, SITE_NAME } from "@/lib/site";
+import { CONTACT_WA_LINK, NAV_LINKS, SITE_NAME } from "@/lib/site";
 import styles from "./Header.module.css";
 
 export default function Header() {
@@ -25,26 +25,17 @@ export default function Header() {
           href="/"
           className={styles.logoLink}
           aria-label={`${SITE_NAME} - kembali ke Beranda`}
-          title={`${SITE_NAME} - Software Monitoring Karyawan WFA`}
+          title="Timebase — Monitoring Aktivitas dan Produktivitas Karyawan"
         >
           <Image
-            src="/assets/logo-timebase-wordmark-gradient-tagline.png"
-            alt="Logo Time Base - software monitoring karyawan WFA dengan tagline Accountability in Every Hour"
-            title="Time Base - Accountability in Every Hour"
-            width={434}
-            height={67}
+            src="/assets/logo-timebase-wordmark-tagline.png"
+            alt="Logo Timebase — accountability tool monitoring aktivitas karyawan real-time"
+            title="Timebase — Monitoring Aktivitas dan Produktivitas Karyawan"
+            width={220}
+            height={48}
             priority
             loading="eager"
-            className={styles.logoDesktop}
-          />
-          <Image
-            src="/assets/logo-timebase-icon-gradient.png"
-            alt="Logo ikon Time Base - platform monitoring karyawan WFA"
-            title="Time Base"
-            width={40}
-            height={40}
-            priority
-            className={styles.logoMobile}
+            className={styles.logo}
           />
         </Link>
 
@@ -62,9 +53,15 @@ export default function Header() {
 
         <div className={styles.actions}>
           <ThemeToggle />
-          <Link href="/kontak" className={styles.ctaButton} title="Jadwalkan demo software monitoring karyawan WFA">
-            Jadwalkan Demo
-          </Link>
+          <a
+            href={CONTACT_WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.ctaButton}
+            title="Request Demo Gratis Timebase via WhatsApp"
+          >
+            Request Demo
+          </a>
           <button
             type="button"
             className={styles.burger}
@@ -93,14 +90,16 @@ export default function Header() {
             </li>
           ))}
           <li>
-            <Link
-              href="/kontak"
+            <a
+              href={CONTACT_WA_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
               className={styles.ctaButtonMobile}
-              title="Jadwalkan demo software monitoring karyawan WFA"
+              title="Request Demo Gratis Timebase via WhatsApp"
             >
-              Jadwalkan Demo
-            </Link>
+              Request Demo
+            </a>
           </li>
         </ul>
       </nav>

@@ -2,24 +2,24 @@
 
 import { useState, type KeyboardEvent } from "react";
 import { ChevronDown } from "lucide-react";
-import styles from "./HargaFaqAccordion.module.css";
+import styles from "./KeamananFaqAccordion.module.css";
 
 interface FaqItem {
   question: string;
   answer: string;
 }
 
-interface HargaFaqAccordionProps {
+interface KeamananFaqAccordionProps {
   items: FaqItem[];
 }
 
 /**
- * HargaFaqAccordion — accordion FAQ untuk halaman Harga.
+ * KeamananFaqAccordion — accordion FAQ untuk halaman Keamanan & Kepatuhan.
  * Setiap trigger adalah elemen <button> asli (fokus & aktivasi keyboard
  * native via Enter/Space) dan mendukung navigasi ArrowUp/ArrowDown antar
- * pertanyaan sesuai pola disclosure widget standar.
+ * pertanyaan, mengikuti pola FiturFaqAccordion.tsx.
  */
-export default function HargaFaqAccordion({ items }: HargaFaqAccordionProps) {
+export default function KeamananFaqAccordion({ items }: KeamananFaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggle = (index: number) => {
@@ -29,11 +29,11 @@ export default function HargaFaqAccordion({ items }: HargaFaqAccordionProps) {
   const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     if (event.key === "ArrowDown") {
       event.preventDefault();
-      const next = document.getElementById(`harga-faq-trigger-${index + 1}`);
+      const next = document.getElementById(`keamanan-faq-trigger-${index + 1}`);
       next?.focus();
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
-      const prev = document.getElementById(`harga-faq-trigger-${index - 1}`);
+      const prev = document.getElementById(`keamanan-faq-trigger-${index - 1}`);
       prev?.focus();
     }
   };
@@ -47,10 +47,10 @@ export default function HargaFaqAccordion({ items }: HargaFaqAccordionProps) {
             <h3 className={styles.questionRow}>
               <button
                 type="button"
-                id={`harga-faq-trigger-${index}`}
+                id={`keamanan-faq-trigger-${index}`}
                 className={styles.trigger}
                 aria-expanded={isOpen}
-                aria-controls={`harga-faq-panel-${index}`}
+                aria-controls={`keamanan-faq-panel-${index}`}
                 tabIndex={0}
                 onClick={() => toggle(index)}
                 onKeyDown={(event) => handleKeyDown(event, index)}
@@ -60,9 +60,9 @@ export default function HargaFaqAccordion({ items }: HargaFaqAccordionProps) {
               </button>
             </h3>
             <div
-              id={`harga-faq-panel-${index}`}
+              id={`keamanan-faq-panel-${index}`}
               role="region"
-              aria-labelledby={`harga-faq-trigger-${index}`}
+              aria-labelledby={`keamanan-faq-trigger-${index}`}
               className={isOpen ? styles.panelOpen : styles.panel}
             >
               <p className={styles.answer}>{item.answer}</p>

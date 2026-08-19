@@ -13,17 +13,17 @@ export default function Footer() {
         <div className={styles.brandCol}>
           <div className={styles.logoBox}>
             <Image
-              src="/assets/logo-timebase-wordmark-gradient-tagline.png"
-              alt="Logo Time Base - software monitoring karyawan WFA"
-              title="Time Base - Accountability in Every Hour"
-              width={200}
-              height={44}
+              src="/assets/logo-timebase-wordmark-tagline.png"
+              alt="Logo Timebase — accountability tool monitoring aktivitas karyawan real-time"
+              title="Timebase — Monitoring Aktivitas dan Produktivitas Karyawan"
+              width={180}
+              height={40}
             />
           </div>
-          <p className={styles.tagline}>{SITE_TAGLINE}</p>
+          <p className={styles.tagline}>{SITE_TAGLINE}.</p>
           <p className={styles.desc}>
-            Platform monitoring aktivitas kerja karyawan real-time untuk perusahaan dengan skema Work From Anywhere
-            (WFA).
+            {SITE_NAME} membantu perusahaan memantau aktivitas dan produktivitas karyawan secara real-time dan
+            transparan — accountability tool, bukan surveillance tool.
           </p>
         </div>
 
@@ -48,14 +48,14 @@ export default function Footer() {
                 href={CONTACT_WA_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Hubungi Time Base via WhatsApp untuk demo monitoring karyawan"
+                title={`Hubungi ${SITE_NAME} via WhatsApp`}
               >
                 <MessageCircle size={16} aria-hidden="true" />
-                <span>{CONTACT_WA_NUMBER}</span>
+                <span>{CONTACT_WA_NUMBER} (WhatsApp)</span>
               </a>
             </li>
             <li>
-              <a href={`mailto:${CONTACT_EMAIL}`} title="Kirim email ke Time Base">
+              <a href={`mailto:${CONTACT_EMAIL}`} title={`Kirim email ke ${SITE_NAME}`}>
                 <Mail size={16} aria-hidden="true" />
                 <span>{CONTACT_EMAIL}</span>
               </a>
@@ -72,6 +72,7 @@ export default function Footer() {
         <p>
           © {year} {SITE_NAME}. Seluruh hak cipta dilindungi.
         </p>
+        <p>Berbasis Consent Tertulis, sesuai UU PDP No. 27/2022</p>
       </div>
     </footer>
   );
