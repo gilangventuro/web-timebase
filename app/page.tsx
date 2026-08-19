@@ -3,16 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  Activity,
   Building2,
   CirclePlay,
   CircleUserRound,
   ClipboardList,
   FileSearch,
-  KeyboardOff,
   Quote,
-  ShieldCheck,
-  Target,
   UsersRound,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -62,29 +58,6 @@ const PROBLEM_ITEMS = [
     icon: Building2,
     title: "Tim Tersebar Lintas Kota",
     desc: "Pengawasan manual oleh satu manajer tidak lagi mungkin dilakukan secara fisik.",
-  },
-];
-
-const SOLUTION_BENEFITS = [
-  {
-    icon: Activity,
-    title: "Dashboard Real-Time",
-    desc: "Pantau jam kerja dan aktivitas karyawan langsung dari satu dashboard terpusat.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Berbasis Consent Tertulis",
-    desc: "Tracking berjalan sesuai persetujuan karyawan, selaras UU PDP No. 27/2022.",
-  },
-  {
-    icon: KeyboardOff,
-    title: "Bukan Perekam Ketikan",
-    desc: "Fokus pada jam kerja & screenshot berkala terkait pekerjaan, tanpa merekam isi yang diketik (keystroke logging).",
-  },
-  {
-    icon: Target,
-    title: "Spesialis Monitoring Karyawan, Bukan HRIS Generik",
-    desc: "Fokus tunggal pada akuntabilitas kinerja real-time, bukan modul serba-guna seperti payroll.",
   },
 ];
 
@@ -302,23 +275,6 @@ export default function HomePage() {
               <blockquote className={styles.pullQuote}>
                 <p>&ldquo;Timebase adalah accountability tool, bukan surveillance tool.&rdquo;</p>
               </blockquote>
-            </AnimatedSection>
-
-            <AnimatedSection as="div">
-              <SwipeableCards ariaLabel="Daftar keunggulan solusi Timebase">
-                {SOLUTION_BENEFITS.map((benefit) => {
-                  const Icon = benefit.icon;
-                  return (
-                    <div className={`${styles.solutionCard} stagger-item`} key={benefit.title} tabIndex={0}>
-                      <span className={styles.solutionIconWrap}>
-                        <Icon size={22} aria-hidden="true" />
-                      </span>
-                      <h3 className={styles.cardTitle}>{benefit.title}</h3>
-                      <p className={styles.cardDesc}>{benefit.desc}</p>
-                    </div>
-                  );
-                })}
-              </SwipeableCards>
             </AnimatedSection>
           </div>
         </div>

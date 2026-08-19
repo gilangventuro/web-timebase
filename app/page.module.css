@@ -217,15 +217,7 @@
 .solutionGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-12);
-  align-items: center;
-}
-
-@media (min-width: 1024px) {
-  .solutionGrid {
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: var(--space-8);
-  }
+  justify-items: center;
 }
 
 .solutionVisual {
@@ -249,62 +241,6 @@
   font-size: 1.05rem;
   font-style: italic;
   color: var(--color-text);
-}
-
-.solutionCard {
-  position: relative;
-  height: 100%;
-  padding: var(--space-6);
-  border-radius: var(--radius-xl);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: var(--color-surface-glass);
-  border: 1px solid var(--color-border);
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  isolation: isolate;
-}
-
-.solutionCard::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: var(--gradient-brand);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  z-index: -1;
-  animation: solutionBorderPulse 3.6s ease-in-out infinite;
-}
-
-@keyframes solutionBorderPulse {
-  0%,
-  100% {
-    opacity: 0.45;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.solutionCard:hover,
-.solutionCard:focus-visible {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
-}
-
-.solutionIconWrap {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-lg);
-  background: var(--gradient-brand);
-  color: #ffffff;
-  margin-bottom: var(--space-4);
 }
 
 /* ===== CARA KERJA ===== */
