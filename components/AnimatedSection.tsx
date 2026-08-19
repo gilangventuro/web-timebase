@@ -53,9 +53,19 @@ const TRANSITION = "opacity 0.4s ease-out, transform 0.4s ease-out";
  * opacity multiplies down the tree).
  *
  * Scroll-direction aware (AGENTS.md Pasal III.3): once the user performs a
- * real scroll gesture, a below-the-fold section only (re)reveals while
- * scrolling DOWN, and resets to hidden whenever it exits the viewport —
- * `once: true` is intentionally never used.
+ * real scroll gesture, a below-the-fold section only reveals while
+ * scrolling DOWN.
+ *
+ * Bug fix: an earlier version also re-hid a section the moment it exited
+ * the viewport (in either direction), so scrolling down past a section and
+ * then back up to re-read it found it permanently blank — the hide-on-exit
+ * fired correctly, but re-entering while scrolling *up* never satisfied the
+ * "scrolling down" reveal gate, so it never came back without a full page
+ * reload. A reveal is now sticky: once a section has been shown, it stays
+ * shown, and its observer is disconnected. The "no `once: true`" mandate
+ * governs the *entrance* animation (it must be driven by real scroll
+ * position, not fire unconditionally on mount) — it was never meant to make
+ * already-read content vanish again.
  */
 export default function AnimatedSection({
   children,
@@ -146,17 +156,10 @@ export default function AnimatedSection({
         }, delay);
         pendingTimers.push(id);
       }
-    };
 
-    const hide = () => {
-      hasRevealed.current = false;
-      clearPendingTimers();
-
-      if (hasStaggerItems) {
-        anime.set(staggerItems, { opacity: 0, translateY: 24 });
-      } else {
-        anime.set(el, { opacity: 0, translateY: 30 });
-      }
+      // Sticky reveal: once shown, this section is done being observed —
+      // it must never be hidden again just because it scrolls out of view.
+      observer.disconnect();
     };
 
     const observer = new IntersectionObserver(
@@ -168,14 +171,8 @@ export default function AnimatedSection({
           // indefinitely for a "downward" scroll that may never register.
           const scrollingDown = !hasUserScrolled.current || window.scrollY >= lastScrollY.current;
 
-          // Idempotent: only actually (re)start on a genuine hidden->visible
-          // or visible->hidden transition, so a redundant callback can
-          // never restart the reveal and snap already-revealed content
-          // back out.
           if (entry.isIntersecting && scrollingDown && !hasRevealed.current) {
             reveal();
-          } else if (!entry.isIntersecting && hasRevealed.current) {
-            hide();
           }
         });
       },
