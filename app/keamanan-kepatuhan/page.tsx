@@ -312,7 +312,7 @@ export default function KeamananKepatuhanPage() {
       {/* SECTION 3: Cara Timebase Menjawabnya */}
       <section className={styles.answer}>
         <div className="container">
-          <AnimatedSection as="div" className={styles.sectionHead}>
+          <AnimatedSection as="div" className={`${styles.sectionHead} ${styles.sectionHeadWide}`}>
             <h2 className={styles.sectionTitle}>Cara Timebase Menjawabnya</h2>
             <p className={styles.valueProp}>
               Timebase adalah accountability tool, bukan surveillance tool — setiap data yang direkam (aktivitas
