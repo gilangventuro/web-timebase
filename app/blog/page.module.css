@@ -160,11 +160,10 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: var(--space-3);
-  padding: var(--space-6);
   border-radius: var(--radius-xl);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
+  overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -174,29 +173,57 @@
   box-shadow: var(--shadow-card-hover);
 }
 
-.articleIllustration {
-  padding: var(--space-4) 0;
-}
-
-.articleCtaLink {
-  display: inline-flex;
+/* Thumbnail-style banner zone. The illustration components were designed
+   at their own natural width (up to 560px), wider than a narrow grid
+   card — scaling them down uniformly (instead of letting them lay out at
+   full size) is what keeps them from overflowing into neighboring cards. */
+.articleBanner {
+  display: flex;
   align-items: center;
-  gap: var(--space-1);
-  font: var(--text-body-sm);
-  font-weight: 600;
-  color: var(--color-primary);
-  width: fit-content;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  padding: var(--space-4);
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
 }
 
-.articleCtaLink:hover {
-  text-decoration: underline;
+.articleBanner > * {
+  transform: scale(0.55);
+}
+
+.articleBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+  padding: var(--space-6);
+}
+
+.articleMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-caption);
+  color: var(--color-text-muted);
+}
+
+.articleTag {
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.articleMetaDot {
+  opacity: 0.6;
 }
 
 .articleCardTitle {
   font: var(--text-h4);
   font-size: 1.1rem;
   color: var(--color-text);
-  margin-top: var(--space-2);
 }
 
 .articleCardDesc {

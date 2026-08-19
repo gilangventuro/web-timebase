@@ -191,28 +191,32 @@ export default function BlogIndexPage() {
                 const Illustration = ILLUSTRATIONS[article.illustration];
                 return (
                   <div className={`${styles.articleCard} stagger-item`} key={article.slug} tabIndex={0}>
-                    <div className={styles.articleIllustration}>
+                    <div className={styles.articleBanner}>
                       <Illustration />
                     </div>
-                    <a
-                      href={article.heroCtaHref}
-                      target={article.heroCtaExternal ? "_blank" : undefined}
-                      rel={article.heroCtaExternal ? "noopener noreferrer" : undefined}
-                      className={styles.articleCtaLink}
-                      title={`${article.heroCtaLabel} — ${SITE_NAME}`}
-                    >
-                      {article.heroCtaLabel}
-                    </a>
-                    <h3 className={styles.articleCardTitle}>{article.cardTitle}</h3>
-                    <p className={styles.articleCardDesc}>{article.cardDesc}</p>
-                    <Link
-                      href={`/blog/${article.slug}`}
-                      className={styles.readArticleLink}
-                      title={`Baca Artikel: ${article.title}`}
-                    >
-                      Baca Artikel
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </Link>
+                    <div className={styles.articleBody}>
+                      <div className={styles.articleMeta}>
+                        <span className={styles.articleTag}>Artikel</span>
+                        <span className={styles.articleMetaDot} aria-hidden="true">
+                          &middot;
+                        </span>
+                        <span>{article.displayDate}</span>
+                        <span className={styles.articleMetaDot} aria-hidden="true">
+                          &middot;
+                        </span>
+                        <span>{article.readTime}</span>
+                      </div>
+                      <h3 className={styles.articleCardTitle}>{article.cardTitle}</h3>
+                      <p className={styles.articleCardDesc}>{article.cardDesc}</p>
+                      <Link
+                        href={`/blog/${article.slug}`}
+                        className={styles.readArticleLink}
+                        title={`Baca Artikel: ${article.title}`}
+                      >
+                        Baca Artikel
+                        <ArrowRight size={16} aria-hidden="true" />
+                      </Link>
+                    </div>
                   </div>
                 );
               })}
