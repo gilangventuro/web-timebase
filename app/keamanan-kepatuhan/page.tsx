@@ -72,17 +72,17 @@ const WORRIES = [
 
 const CONSENT_FLOW_STEPS = [
   {
-    icon: PenLine,
+    icon: <PenLine size={26} aria-hidden="true" />,
     title: "Consent Tertulis",
     desc: "Persetujuan tertulis karyawan sebelum tracking aktif, sesuai UU PDP No. 27/2022.",
   },
   {
-    icon: Lock,
+    icon: <Lock size={26} aria-hidden="true" />,
     title: "Enkripsi",
     desc: "Data aktivitas kerja dienkripsi saat dikirim dan disimpan di server terlindungi.",
   },
   {
-    icon: UserCog,
+    icon: <UserCog size={26} aria-hidden="true" />,
     title: "Akses Terbatas",
     desc: "Hanya akun HR/manajer berwenang yang bisa melihat data tim.",
   },
@@ -90,17 +90,17 @@ const CONSENT_FLOW_STEPS = [
 
 const SECURED_FLOW_STEPS = [
   {
-    icon: PenLine,
+    icon: <PenLine size={26} aria-hidden="true" />,
     title: "Consent Tertulis Karyawan",
     desc: "Formulir persetujuan tertulis dijalankan sebelum tracking aktif.",
   },
   {
-    icon: Lock,
+    icon: <Lock size={26} aria-hidden="true" />,
     title: "Enkripsi Data",
     desc: "Aktivitas kerja dienkripsi sepanjang perjalanan dan saat tersimpan.",
   },
   {
-    icon: UserCog,
+    icon: <UserCog size={26} aria-hidden="true" />,
     title: "Akses Terbatas HR/Manajer",
     desc: "Hanya akun berwenang yang bisa membuka dashboard data tim.",
   },

@@ -1,0 +1,494 @@
+/* ===== HERO (single column, center-aligned — inner page tanpa heroImage) ===== */
+.hero {
+  padding-block: var(--space-16) var(--space-24);
+  overflow: hidden;
+}
+
+.heroInner {
+  display: flex;
+  justify-content: center;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--color-primary);
+  font: var(--text-body-sm);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.eyebrowDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-brand);
+}
+
+.headline {
+  font: var(--text-h1);
+  font-size: clamp(2.1rem, 4.4vw, 3rem);
+  color: var(--color-text);
+  max-width: 20ch;
+}
+
+.subheadline {
+  font: var(--text-body-lg);
+  color: var(--color-text-muted);
+  max-width: 65ch;
+}
+
+.heroCtaRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  justify-content: center;
+  padding: 16px 32px;
+  min-height: 44px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-brand);
+  color: #ffffff;
+  font-weight: 600;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.ctaPrimary:hover {
+  filter: brightness(1.08);
+  transform: scale(1.02);
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  justify-content: center;
+  padding: 16px 32px;
+  min-height: 44px;
+  border-radius: var(--radius-lg);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-weight: 600;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ctaSecondary:hover {
+  border-color: var(--color-primary);
+  transform: scale(1.02);
+}
+
+.statsRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  width: 100%;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.statValue {
+  font: var(--text-h4);
+  font-size: 1.4rem;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.statLabel {
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+/* ===== SHARED SECTION HEAD ===== */
+.sectionHead {
+  text-align: center;
+  max-width: 700px;
+  margin-inline: auto;
+  margin-bottom: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.sectionTitle {
+  font: var(--text-h2);
+  font-size: clamp(1.6rem, 3.4vw, 2.25rem);
+  color: var(--color-text);
+}
+
+.valueProp {
+  font: var(--text-body-lg);
+  color: var(--color-text-muted);
+  max-width: 68ch;
+}
+
+/* ===== Shared card text ===== */
+.cardTitle {
+  font: var(--text-h4);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.cardDesc {
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+.monitorCardTop {
+  margin-bottom: var(--space-4);
+}
+
+.monitorIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-brand);
+  color: #ffffff;
+}
+
+/* ===== SECTION: Navigasi & Akun ===== */
+.navAkun {
+  padding-block: var(--space-24);
+  background: var(--color-surface);
+}
+
+/* ===== SECTION: Monitoring ===== */
+.monitoring {
+  padding-block: var(--space-24);
+}
+
+.monitorCard {
+  position: relative;
+  height: 100%;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.monitorCard:hover,
+.monitorCard:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.elementName {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.plainList {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.plainListItem {
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.plainListItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+}
+
+/* ===== Status badges (Aktivitas Karyawan) ===== */
+.statusList {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.statusItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+.statusDot {
+  margin-top: 0.4em;
+  width: 9px;
+  height: 9px;
+  min-width: 9px;
+  border-radius: var(--radius-full);
+}
+
+.tone_success {
+  background: var(--color-success);
+}
+
+.tone_warning {
+  background: var(--color-warning);
+}
+
+.tone_error {
+  background: var(--color-error);
+}
+
+.tone_info {
+  background: var(--color-info);
+}
+
+.tone_muted {
+  background: var(--color-text-muted);
+}
+
+/* ===== SECTION: Manajemen ===== */
+.manajemen {
+  padding-block: var(--space-24);
+  background: var(--color-surface);
+}
+
+.manajemenCard {
+  position: relative;
+  height: 100%;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.manajemenCard:hover,
+.manajemenCard:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.chipList {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font: var(--text-caption);
+  font-weight: 600;
+}
+
+.note {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: rgba(249, 115, 22, 0.1);
+  border-left: 3px solid var(--color-secondary);
+  font: var(--text-caption);
+  color: var(--color-text-muted);
+}
+
+/* ===== SECTION: Referensi — Glosarium ===== */
+.referensi {
+  padding-block: var(--space-24);
+}
+
+/* ===== SECTION: Tonton Ringkasan Dashboard ===== */
+.video {
+  padding-block: var(--space-24);
+  background: var(--color-surface);
+}
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .videoGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  }
+}
+
+.videoDashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.comingSoonBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: rgba(249, 115, 22, 0.14);
+  color: var(--color-secondary-dark);
+  font: var(--text-caption);
+  font-weight: 700;
+}
+
+.videoCaption {
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+  max-width: 480px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.stepIndicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stepIndicator:hover,
+.stepIndicator:focus-visible {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-card);
+}
+
+.stepIndicatorIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-brand);
+  color: #ffffff;
+}
+
+.stepIndicatorLabel {
+  font: var(--text-body-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ===== SECTION: FAQ ===== */
+.faq {
+  padding-block: var(--space-24);
+}
+
+/* ===== SECTION: CTA PENUTUP ===== */
+.cta {
+  padding-block: var(--space-24);
+  background: var(--gradient-brand);
+}
+
+.ctaInner {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.ctaHeadline {
+  font: var(--text-h2);
+  font-size: clamp(1.6rem, 3.4vw, 2.25rem);
+  color: #ffffff;
+}
+
+.ctaSubheadline {
+  font: var(--text-body-lg);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ctaButtonLarge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-top: var(--space-2);
+  padding: 16px 40px;
+  min-height: 44px;
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+  color: var(--color-primary);
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ctaButtonLarge:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.guarantee {
+  font: var(--text-body-sm);
+  color: rgba(255, 255, 255, 0.85);
+}

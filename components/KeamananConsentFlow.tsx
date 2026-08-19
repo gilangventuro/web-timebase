@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { ArrowRight, type LucideIcon } from "lucide-react";
+import { useEffect, useRef, type ReactNode } from "react";
+import { ArrowRight } from "lucide-react";
 import anime from "animejs";
 import styles from "./KeamananConsentFlow.module.css";
 
 export interface ConsentFlowStep {
-  icon: LucideIcon;
+  icon: ReactNode;
   title: string;
   desc: string;
 }
@@ -63,12 +63,11 @@ export default function KeamananConsentFlow({ steps, ariaLabel, pulse = false }:
       aria-label={ariaLabel}
     >
       {steps.map((step, index) => {
-        const Icon = step.icon;
         return (
           <div className={styles.stepWrap} key={step.title}>
             <div className={`${styles.step} stagger-item`} role="listitem" tabIndex={0}>
               <span className={styles.iconWrap} data-flow-node aria-hidden="true">
-                <Icon size={26} aria-hidden="true" />
+                {step.icon}
               </span>
               <h3 className={styles.stepTitle}>{step.title}</h3>
               <p className={styles.stepDesc}>{step.desc}</p>

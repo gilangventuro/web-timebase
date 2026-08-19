@@ -1,0 +1,129 @@
+.panel {
+  width: 100%;
+  max-width: 640px;
+  margin-inline: auto;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.panelDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+}
+
+.panelTitle {
+  margin-left: var(--space-2);
+  font: var(--text-body-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.liveTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 4px var(--space-3);
+  border-radius: var(--radius-full);
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--color-primary);
+  font: var(--text-caption);
+  font-weight: 700;
+}
+
+.trackWrap {
+  position: relative;
+  height: 96px;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  padding-inline: var(--space-4);
+}
+
+.ticks {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  padding-inline: var(--space-4);
+}
+
+.tick {
+  flex: 1;
+  min-width: 2px;
+  max-width: 3px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+}
+
+.trackLine {
+  position: absolute;
+  left: var(--space-4);
+  right: var(--space-4);
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: var(--gradient-brand);
+  opacity: 0.5;
+  border-radius: var(--radius-full);
+}
+
+.pulseDot {
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-brand);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.18);
+}
+
+.pulseRing {
+  position: absolute;
+  inset: -8px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-primary);
+  animation: blogPulseRing 1.8s ease-out infinite;
+}
+
+@keyframes blogPulseRing {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.caption {
+  margin-top: var(--space-4);
+  text-align: center;
+  font: var(--text-caption);
+  color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulseRing {
+    animation: none;
+    opacity: 0.3;
+  }
+}

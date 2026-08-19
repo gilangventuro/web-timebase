@@ -1,0 +1,98 @@
+.badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.radarWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+
+.radarRing,
+.radarRingAlt {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-primary);
+  animation: blogMalangRadar 2.4s ease-out infinite;
+}
+
+.radarRingAlt {
+  animation-delay: 1.2s;
+}
+
+@keyframes blogMalangRadar {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+.pinIconWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-brand);
+  color: #ffffff;
+}
+
+.badgeText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.cityName {
+  font: var(--text-h4);
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.cityCaption {
+  font: var(--text-caption);
+  color: var(--color-text-muted);
+}
+
+.wibTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--color-primary);
+  font: var(--text-caption);
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radarRing,
+  .radarRingAlt {
+    animation: none;
+    opacity: 0.4;
+  }
+}

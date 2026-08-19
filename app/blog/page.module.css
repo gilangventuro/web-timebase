@@ -1,0 +1,310 @@
+/* ===== HERO (single column, center-aligned — tanpa heroImage) ===== */
+.hero {
+  padding-block: var(--space-16) var(--space-24);
+  overflow: hidden;
+}
+
+.heroInner {
+  display: flex;
+  justify-content: center;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--gradient-brand);
+  color: #ffffff;
+  font: var(--text-body-sm);
+  font-weight: 600;
+}
+
+.headline {
+  font: var(--text-h1);
+  font-size: clamp(2.1rem, 4.4vw, 3rem);
+  color: var(--color-text);
+  max-width: 18ch;
+}
+
+.subheadline {
+  font: var(--text-body-lg);
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  justify-content: center;
+  padding: 16px 32px;
+  min-height: 44px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-brand);
+  color: #ffffff;
+  font-weight: 600;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.ctaPrimary:hover {
+  filter: brightness(1.08);
+  transform: scale(1.02);
+}
+
+/* ===== SHARED SECTION HEAD ===== */
+.sectionHead {
+  text-align: center;
+  max-width: 680px;
+  margin-inline: auto;
+  margin-bottom: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.sectionTitle {
+  font: var(--text-h2);
+  font-size: clamp(1.6rem, 3.4vw, 2.25rem);
+  color: var(--color-text);
+}
+
+.valueProp {
+  font: var(--text-body-lg);
+  color: var(--color-text-muted);
+  max-width: 68ch;
+}
+
+.cardTitle {
+  font: var(--text-h4);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.cardDesc {
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+/* ===== SECTION: Tantangan Nyata Tim Anda ===== */
+.challenge {
+  padding-block: var(--space-24);
+  background: var(--color-surface);
+}
+
+.challengeCard {
+  position: relative;
+  height: 100%;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.challengeCard:hover,
+.challengeCard:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.challengeIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+
+/* ===== SECTION: Artikel Pilihan Kami ===== */
+.articles {
+  padding-block: var(--space-24);
+}
+
+.articleCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.articleCard:hover,
+.articleCard:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.articleIllustration {
+  padding: var(--space-4) 0;
+}
+
+.articleCtaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font: var(--text-body-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  width: fit-content;
+}
+
+.articleCtaLink:hover {
+  text-decoration: underline;
+}
+
+.articleCardTitle {
+  font: var(--text-h4);
+  font-size: 1.1rem;
+  color: var(--color-text);
+  margin-top: var(--space-2);
+}
+
+.articleCardDesc {
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+  flex-grow: 1;
+}
+
+.readArticleLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--gradient-brand);
+  color: #ffffff;
+  font: var(--text-body-sm);
+  font-weight: 700;
+  width: fit-content;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.readArticleLink:hover {
+  filter: brightness(1.08);
+  transform: scale(1.02);
+}
+
+/* ===== SECTION: Kenapa Kami Menulis Ini ===== */
+.why {
+  padding-block: var(--space-24);
+  background: var(--color-surface);
+}
+
+.whyBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.whyBody p {
+  font: var(--text-body-lg);
+  color: var(--color-text-muted);
+}
+
+/* ===== FAQ ===== */
+.faq {
+  padding-block: var(--space-24);
+}
+
+/* ===== SECTION: Pratinjau Video Insight ===== */
+.videoPreview {
+  padding-block: var(--space-24);
+  background: var(--color-surface);
+}
+
+.videoNote {
+  max-width: 640px;
+  margin-inline: auto;
+  margin-top: var(--space-8);
+  text-align: center;
+}
+
+.videoNote p {
+  font: var(--text-body);
+  color: var(--color-text-muted);
+}
+
+/* ===== CTA ===== */
+.cta {
+  padding-block: var(--space-24);
+  background: var(--gradient-brand);
+}
+
+.ctaInner {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.ctaHeadline {
+  font: var(--text-h2);
+  font-size: clamp(1.6rem, 3.4vw, 2.25rem);
+  color: #ffffff;
+}
+
+.ctaSubheadline {
+  font: var(--text-body-lg);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ctaButtonLarge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-top: var(--space-2);
+  padding: 16px 40px;
+  min-height: 44px;
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+  color: var(--color-primary);
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ctaButtonLarge:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.guarantee {
+  font: var(--text-body-sm);
+  color: rgba(255, 255, 255, 0.85);
+}
