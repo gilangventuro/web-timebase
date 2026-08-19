@@ -368,7 +368,6 @@ export default function HomePage() {
               Request Demo Sekarang
               <ArrowRight size={18} aria-hidden="true" />
             </a>
-            <p className={styles.guarantee}>Konsultasi kebutuhan via WhatsApp, tanpa proses berbelit.</p>
           </AnimatedSection>
         </div>
       </section>
