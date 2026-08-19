@@ -15,9 +15,9 @@
 
 .dashLine {
   fill: none;
-  stroke: var(--color-border);
-  stroke-width: 0.6;
-  stroke-dasharray: 3 3;
+  stroke: rgba(124, 58, 237, 0.4);
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
   vector-effect: non-scaling-stroke;
 }
 

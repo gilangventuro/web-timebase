@@ -258,7 +258,7 @@ export default function HomePage() {
       {/* SECTION 3: SOLUTION — Akuntabilitas, Bukan Pengintaian */}
       <section className={styles.solution} aria-labelledby="solution-title">
         <div className="container">
-          <AnimatedSection as="div" className={styles.sectionHead}>
+          <AnimatedSection as="div" className={`${styles.sectionHead} ${styles.sectionHeadWide}`}>
             <h2 id="solution-title" className={styles.sectionTitle}>
               Akuntabilitas, Bukan Pengintaian
             </h2>

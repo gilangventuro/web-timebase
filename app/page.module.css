@@ -157,6 +157,16 @@
   gap: var(--space-4);
 }
 
+.sectionHeadWide {
+  max-width: none;
+  width: 100%;
+}
+
+.sectionHeadWide .valueProp {
+  max-width: none;
+  width: 100%;
+}
+
 .sectionTitle {
   font: var(--text-h2);
   font-size: clamp(1.6rem, 3.4vw, 2.25rem);
