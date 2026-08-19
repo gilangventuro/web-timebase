@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { LayoutDashboard, User } from "lucide-react";
+import Image from "next/image";
+import { User } from "lucide-react";
 import anime from "animejs";
 import styles from "./BerandaMultiCityHub.module.css";
 
@@ -76,8 +77,14 @@ export default function BerandaMultiCityHub() {
       </svg>
 
       <div className={styles.center}>
-        <span className={styles.centerIcon} aria-hidden="true">
-          <LayoutDashboard size={26} aria-hidden="true" />
+        <span className={styles.centerIcon}>
+          <Image
+            src="/assets/logo-timebase-icon-gradient.png"
+            alt="Logo ikon Timebase"
+            title="Timebase"
+            width={64}
+            height={64}
+          />
         </span>
         <span className={styles.centerLabel}>Dashboard Timebase</span>
       </div>

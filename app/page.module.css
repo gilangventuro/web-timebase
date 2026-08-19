@@ -217,7 +217,6 @@
 .solutionGrid {
   display: grid;
   grid-template-columns: 1fr;
-  justify-items: center;
 }
 
 .solutionVisual {
@@ -226,21 +225,6 @@
   align-items: center;
   gap: var(--space-4);
   text-align: center;
-}
-
-.pullQuote {
-  margin: 0;
-  padding: var(--space-4) var(--space-6);
-  max-width: 380px;
-  border-left: 3px solid var(--color-primary);
-  text-align: left;
-}
-
-.pullQuote p {
-  font: var(--text-h4);
-  font-size: 1.05rem;
-  font-style: italic;
-  color: var(--color-text);
 }
 
 /* ===== CARA KERJA ===== */

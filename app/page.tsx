@@ -272,9 +272,6 @@ export default function HomePage() {
           <div className={styles.solutionGrid}>
             <AnimatedSection as="div" className={styles.solutionVisual} delay={100}>
               <BerandaMultiCityHub />
-              <blockquote className={styles.pullQuote}>
-                <p>&ldquo;Timebase adalah accountability tool, bukan surveillance tool.&rdquo;</p>
-              </blockquote>
             </AnimatedSection>
           </div>
         </div>
