@@ -2,14 +2,20 @@
   width: 100%;
 }
 
+/* Flexbox (not CSS Grid) so a trailing partial row centers itself instead
+   of hugging the left edge — a grid's justify-content only repositions the
+   whole grid, never an individual ragged last row. */
 .track {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-6);
 }
 
 .item {
   min-width: 0;
+  flex: 1 1 240px;
+  max-width: 320px;
 }
 
 .dots {
