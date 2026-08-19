@@ -1,0 +1,29 @@
+.callout {
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin: 20px 0;
+  border: 1px solid var(--panduan-border);
+  background: #f8fafc;
+}
+
+.calloutTip {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.calloutWarn {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.calloutLock {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  font-size: 13px;
+}
+
+.calloutUpdate {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}

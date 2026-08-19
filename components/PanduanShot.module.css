@@ -1,0 +1,30 @@
+.shot {
+  margin: 16px 0 28px;
+  border: 1px solid var(--panduan-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0c111a;
+}
+
+.shotImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #e5e7eb;
+}
+
+.shotCaption {
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--panduan-muted);
+  background: #fff;
+  border-top: 1px solid var(--panduan-border);
+}
+
+.shotNote {
+  margin: 0;
+  padding: 0 14px 10px;
+  font-size: 12.5px;
+  color: #b45309;
+  background: #fff;
+}

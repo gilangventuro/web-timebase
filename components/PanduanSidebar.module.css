@@ -1,0 +1,100 @@
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--panduan-sidebar-bg);
+  border-right: 1px solid var(--panduan-border);
+  padding: 24px 18px;
+  position: sticky;
+  top: var(--header-height-mobile);
+  height: calc(100vh - var(--header-height-mobile));
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    top: var(--header-height-desktop);
+    height: calc(100vh - var(--header-height-desktop));
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.brandMark {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--gradient-brand);
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brandTitle {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--panduan-ink);
+}
+
+.brandSub {
+  font-size: 11px;
+  color: var(--panduan-muted);
+}
+
+.navGroup {
+  margin-bottom: 20px;
+}
+
+.navLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--panduan-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  padding: 0 10px;
+}
+
+.navGroup ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink,
+.navLinkActive {
+  display: block;
+  padding: 7px 10px;
+  border-radius: 6px;
+  color: var(--panduan-ink);
+  text-decoration: none;
+  font-size: 13.5px;
+}
+
+.navLink:hover {
+  background: #eef2f1;
+}
+
+.navLinkActive {
+  background: var(--panduan-accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (max-width: 860px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
+  }
+}

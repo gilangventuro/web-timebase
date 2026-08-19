@@ -1,0 +1,36 @@
+.pageNav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--panduan-border);
+  gap: 16px;
+}
+
+.navBtn {
+  flex: 1;
+  text-decoration: none;
+  color: var(--panduan-ink);
+  border: 1px solid var(--panduan-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: border-color 0.2s ease;
+}
+
+.navBtn span {
+  display: block;
+  color: var(--panduan-muted);
+  font-weight: 400;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.navBtnNext {
+  text-align: right;
+}
+
+.navBtn:hover {
+  border-color: var(--panduan-accent);
+}
