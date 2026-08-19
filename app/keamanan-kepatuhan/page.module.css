@@ -141,6 +141,10 @@
 
 .worryCard {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   height: 100%;
   padding: var(--space-6);
   border-radius: var(--radius-xl);
@@ -162,7 +166,7 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-full);
   background: rgba(239, 68, 68, 0.12);
   color: var(--color-error);
   margin-bottom: var(--space-4);
@@ -190,6 +194,10 @@
 
 .policyCard {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   height: 100%;
   padding: var(--space-6);
   border-radius: var(--radius-xl);
@@ -209,7 +217,7 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-full);
   background: var(--gradient-brand);
   color: #ffffff;
   margin-bottom: var(--space-4);
@@ -223,6 +231,10 @@
 
 .standardCard {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   height: 100%;
   padding: var(--space-6);
   border-radius: var(--radius-xl);
@@ -242,7 +254,7 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-full);
   background: rgba(124, 58, 237, 0.12);
   color: var(--color-primary);
   margin-bottom: var(--space-4);
