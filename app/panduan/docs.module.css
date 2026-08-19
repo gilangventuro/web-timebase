@@ -17,24 +17,31 @@
 .layout {
   display: flex;
   align-items: flex-start;
+  gap: 56px;
 }
 
 @media (max-width: 860px) {
   .layout {
     flex-direction: column;
+    gap: 0;
   }
 }
 
+/* Horizontal padding lives on the site-wide .container (applied in
+   layout.tsx) so the content's left/right edges line up with the navbar's
+   logo and CTA button — this only carries vertical spacing plus the
+   sidebar-to-content gap (via .layout's gap above), not its own inline
+   padding, to avoid stacking on top of the container's. */
 .content {
   flex: 1;
   min-width: 0;
-  padding: 40px 56px 80px;
+  padding-block: 40px 80px;
   max-width: 880px;
 }
 
 @media (max-width: 860px) {
   .content {
-    padding: 28px 20px 60px;
+    padding-block: 28px 60px;
   }
 }
 
