@@ -412,32 +412,6 @@ export default function KeamananKepatuhanPage() {
           </AnimatedSection>
         </div>
       </section>
-
-      {/* SECTION 7: CTA penutup */}
-      <section className={styles.cta}>
-        <div className={`container ${styles.ctaInner}`}>
-          <AnimatedSection as="div">
-            <h2 className={styles.ctaHeadline}>Kepatuhan Tak Bisa Ditunda</h2>
-            <p className={styles.ctaSubheadline}>
-              Setiap hari tanpa consent tertulis adalah risiko hukum yang terus berjalan. Mulai tracking yang patuh
-              UU PDP sekarang.
-            </p>
-            <a
-              href={CONTACT_WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.ctaButtonLarge}
-              title="Konsultasi Compliance Sekarang dengan Timebase via WhatsApp"
-            >
-              Konsultasi Compliance Sekarang
-            </a>
-            <p className={styles.guarantee}>
-              Tim Timebase membantu menyusun formulir consent karyawan Anda sesuai UU PDP No. 27/2022 — konsultasi
-              awal tanpa biaya.
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
     </>
   );
 }
