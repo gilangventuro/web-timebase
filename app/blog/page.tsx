@@ -106,15 +106,9 @@ export default function BlogIndexPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* SECTION 1: HERO (single column, center-aligned — tanpa heroImage) */}
-      <section className={styles.hero}>
-        <div className={`container ${styles.heroInner}`}>
-          <AnimatedSection as="div" className={styles.heroText}>
-            <h1 className={styles.headline}>Wawasan Monitoring Karyawan</h1>
-            <p className={styles.subheadline}>{PAGE_DESCRIPTION}</p>
-          </AnimatedSection>
-        </div>
-      </section>
+      {/* Visually hidden — SEO/accessibility still need exactly one <h1> per
+          page even though the hero block itself was removed from view. */}
+      <h1 className="srOnly">Wawasan Monitoring Karyawan</h1>
 
       {/* SECTION 3: Artikel Pilihan Kami */}
       <section className={styles.articles}>
