@@ -206,20 +206,6 @@
   color: var(--color-text);
 }
 
-.priceUnit {
-  font: var(--text-body-sm);
-  font-weight: 400;
-  color: var(--color-text-muted);
-  margin-left: 2px;
-}
-
-.priceAnnualNote {
-  display: block;
-  font-size: 12px;
-  color: var(--color-text-muted);
-  margin-top: 2px;
-}
-
 .scrollHint {
   display: none;
   text-align: center;

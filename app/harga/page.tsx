@@ -7,9 +7,9 @@ import styles from "./page.module.css";
 
 const PAGE_URL = `${SITE_URL}/harga`;
 
-const PAGE_TITLE = "Harga Berlangganan Timebase — Per User, Bulanan & Tahunan";
+const PAGE_TITLE = "Harga Berlangganan Timebase — Bulanan & Tahunan";
 const PAGE_DESCRIPTION =
-  "Harga berlangganan Timebase dihitung per user dan makin hemat seiring pertumbuhan tim Anda — pilih bayar bulanan atau tahunan untuk potongan harga lebih besar.";
+  "Harga berlangganan Timebase disesuaikan dengan jumlah user tim Anda — pilih bayar bulanan atau tahunan untuk potongan harga lebih besar.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -26,31 +26,31 @@ export const metadata: Metadata = {
 const PRICE_ROWS = [
   {
     tier: "< 50 User",
-    note: null,
-    monthly: "17.500",
-    annualMonthly: "14.000",
-    annualTotal: "168.000",
+    monthly: "100.000",
+    monthlyNote: null,
+    annualTotal: "1.100.000",
+    annualNote: "Hemat Rp 100.000",
   },
   {
     tier: "< 200 User",
-    note: null,
-    monthly: "15.000",
-    annualMonthly: "12.000",
-    annualTotal: "144.000",
+    monthly: "400.000",
+    monthlyNote: null,
+    annualTotal: "4.600.000",
+    annualNote: "Hemat Rp 200.000",
   },
   {
     tier: "< 400 User",
-    note: "28% lebih murah",
-    monthly: "12.500",
-    annualMonthly: "10.000",
-    annualTotal: "120.000",
+    monthly: "600.000",
+    monthlyNote: "Hemat Rp 200.000",
+    annualTotal: "6.900.000",
+    annualNote: "Hemat Rp 300.000",
   },
   {
     tier: "> 400 User",
-    note: "43% lebih murah",
-    monthly: "10.000",
-    annualMonthly: "8.000",
-    annualTotal: "96.000",
+    monthly: "750.000",
+    monthlyNote: "Hemat > Rp 200.000",
+    annualTotal: "8.500.000",
+    annualNote: "Hemat Rp 500.000",
   },
 ] as const;
 
@@ -90,8 +90,8 @@ export default function HargaPage() {
           <AnimatedSection as="div" className={styles.heroText}>
             <h1 className={styles.headline}>Subscription Price</h1>
             <p className={styles.subheadline}>
-              Mulai pantau kinerja tim Anda hari ini — harga dihitung per user dan makin hemat seiring bertambahnya
-              jumlah user, dengan potongan ekstra jika Anda berlangganan tahunan.
+              Mulai pantau kinerja tim Anda hari ini — pilih paket sesuai jumlah user tim Anda, dengan potongan
+              ekstra jika Anda berlangganan tahunan.
             </p>
           </AnimatedSection>
         </div>
@@ -109,10 +109,7 @@ export default function HargaPage() {
                   </div>
                   {PRICE_ROWS.map((row) => (
                     <div className={styles.colRow} key={row.tier}>
-                      <span className={styles.tierCellText}>
-                        {row.tier}
-                        {row.note && <span className={styles.tierNote}>{row.note}</span>}
-                      </span>
+                      <span className={styles.tierCellText}>{row.tier}</span>
                     </div>
                   ))}
                 </div>
@@ -124,10 +121,8 @@ export default function HargaPage() {
                   </div>
                   {PRICE_ROWS.map((row) => (
                     <div className={styles.colRow} key={row.tier}>
-                      <span className={styles.price}>
-                        Rp {row.monthly}
-                        <span className={styles.priceUnit}>/bulan</span>
-                      </span>
+                      <span className={styles.price}>Rp {row.monthly}</span>
+                      {row.monthlyNote && <span className={styles.tierNote}>{row.monthlyNote}</span>}
                     </div>
                   ))}
                 </div>
@@ -150,11 +145,8 @@ export default function HargaPage() {
                   </div>
                   {PRICE_ROWS.map((row) => (
                     <div className={styles.colRow} key={row.tier}>
-                      <span className={styles.price}>
-                        Rp {row.annualTotal}
-                        <span className={styles.priceUnit}>/tahun</span>
-                      </span>
-                      <span className={styles.priceAnnualNote}>&asymp; Rp {row.annualMonthly}/bulan</span>
+                      <span className={styles.price}>Rp {row.annualTotal}</span>
+                      {row.annualNote && <span className={styles.tierNote}>{row.annualNote}</span>}
                     </div>
                   ))}
                 </div>
