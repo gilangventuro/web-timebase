@@ -15,7 +15,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
-  max-width: 680px;
+  max-width: 920px;
   margin-inline: auto;
   text-align: center;
 }
@@ -29,7 +29,7 @@
 .subheadline {
   font: var(--text-body-lg);
   color: var(--color-text-muted);
-  max-width: 58ch;
+  max-width: 80ch;
 }
 
 /* ===== SECTION: Tabel Harga ===== */
