@@ -24,15 +24,16 @@ export const metadata: Metadata = {
 };
 
 const PRICE_PER_USER_MONTHLY = 5_000;
+// Annual billing runs at a genuinely cheaper effective rate per user/month
+// than paying month-to-month, rather than the same rate with a cosmetic
+// "Hemat" label — this is what actually gets multiplied into the total.
+const PRICE_PER_USER_ANNUAL_MONTHLY_EQUIVALENT = 3_000;
 const MONTHLY_DISCOUNT_RATE = 0.03;
-const ANNUAL_DISCOUNT_RATE = 0.05;
 // Bracket boundaries: rows 1-3 read "< N User" (priced at N), the last row
 // is the open-ended "> " bracket, priced at the next step in the sequence.
 const USER_TIERS = [10, 30, 50, 70];
-// The first two brackets (< 10, < 30) don't carry a monthly "Hemat" note,
-// and their annual note is a fixed Rp100.000 rather than the 5% formula.
+// The first two brackets (< 10, < 30) don't carry a monthly "Hemat" note.
 const TIERS_WITHOUT_SAVINGS = 2;
-const FLAT_ANNUAL_SAVINGS = 100_000;
 
 const formatRupiah = (value: number) => value.toLocaleString("id-ID");
 
@@ -40,21 +41,23 @@ const formatRupiah = (value: number) => value.toLocaleString("id-ID");
 // separate savings callout, it doesn't reduce the billed total — so this is
 // the same for every row rather than computed per tier.
 const MONTHLY_PER_USER_LABEL = `≈ Rp ${formatRupiah(PRICE_PER_USER_MONTHLY)}/user`;
-const ANNUAL_PER_USER_LABEL = `≈ Rp ${formatRupiah(PRICE_PER_USER_MONTHLY * 12)}/user`;
+const ANNUAL_PER_USER_LABEL = `≈ Rp ${formatRupiah(PRICE_PER_USER_ANNUAL_MONTHLY_EQUIVALENT * 12)}/user`;
 
 const PRICE_ROWS = USER_TIERS.map((users, index) => {
   const monthly = users * PRICE_PER_USER_MONTHLY;
-  const annual = monthly * 12;
-  const showSavings = index >= TIERS_WITHOUT_SAVINGS;
+  const annual = users * PRICE_PER_USER_ANNUAL_MONTHLY_EQUIVALENT * 12;
+  const showMonthlySavings = index >= TIERS_WITHOUT_SAVINGS;
   const monthlySavings = Math.round(monthly * MONTHLY_DISCOUNT_RATE);
-  const annualSavings = showSavings ? Math.round(annual * ANNUAL_DISCOUNT_RATE) : FLAT_ANNUAL_SAVINGS;
+  // Real savings vs. paying the monthly rate for 12 months — since annual
+  // billing now has its own genuinely lower per-user rate, this is exact.
+  const annualSavings = monthly * 12 - annual;
   const isLast = index === USER_TIERS.length - 1;
   const tier = isLast ? `> ${USER_TIERS[index - 1]} User` : `< ${users} User`;
 
   return {
     tier,
     monthly: formatRupiah(monthly),
-    monthlyNote: showSavings ? `Hemat Rp ${formatRupiah(monthlySavings)}` : null,
+    monthlyNote: showMonthlySavings ? `Hemat Rp ${formatRupiah(monthlySavings)}` : null,
     annualTotal: formatRupiah(annual),
     annualNote: `Hemat Rp ${formatRupiah(annualSavings)}`,
   };
