@@ -213,6 +213,13 @@
   color: var(--color-text);
 }
 
+.priceUnit {
+  font: var(--text-body-sm);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  margin-left: 2px;
+}
+
 .scrollHint {
   display: none;
   text-align: center;

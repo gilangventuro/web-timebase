@@ -41,16 +41,17 @@ const formatRupiah = (value: number) => value.toLocaleString("id-ID");
 // separate savings callout, it doesn't reduce the billed total — so this is
 // the same for every row rather than computed per tier.
 const MONTHLY_PER_USER_LABEL = `≈ Rp ${formatRupiah(PRICE_PER_USER_MONTHLY)}/user`;
-const ANNUAL_PER_USER_LABEL = `≈ Rp ${formatRupiah(PRICE_PER_USER_ANNUAL_MONTHLY_EQUIVALENT * 12)}/user`;
+// Tahun shows the flat per-user rate itself (not a bracket total), since it's
+// the same regardless of team size.
+const ANNUAL_PRICE_LABEL = `Rp ${formatRupiah(PRICE_PER_USER_ANNUAL_MONTHLY_EQUIVALENT)}`;
+const ANNUAL_SAVINGS_LABEL = `Hemat Rp ${formatRupiah(
+  PRICE_PER_USER_MONTHLY - PRICE_PER_USER_ANNUAL_MONTHLY_EQUIVALENT
+)}/user dari harga bulanan`;
 
 const PRICE_ROWS = USER_TIERS.map((users, index) => {
   const monthly = users * PRICE_PER_USER_MONTHLY;
-  const annual = users * PRICE_PER_USER_ANNUAL_MONTHLY_EQUIVALENT * 12;
   const showMonthlySavings = index >= TIERS_WITHOUT_SAVINGS;
   const monthlySavings = Math.round(monthly * MONTHLY_DISCOUNT_RATE);
-  // Real savings vs. paying the monthly rate for 12 months — since annual
-  // billing now has its own genuinely lower per-user rate, this is exact.
-  const annualSavings = monthly * 12 - annual;
   const isLast = index === USER_TIERS.length - 1;
   const tier = isLast ? `> ${USER_TIERS[index - 1]} User` : `< ${users} User`;
 
@@ -58,8 +59,6 @@ const PRICE_ROWS = USER_TIERS.map((users, index) => {
     tier,
     monthly: formatRupiah(monthly),
     monthlyNote: showMonthlySavings ? `Hemat Rp ${formatRupiah(monthlySavings)}` : null,
-    annualTotal: formatRupiah(annual),
-    annualNote: `Hemat Rp ${formatRupiah(annualSavings)}`,
   };
 });
 
@@ -155,9 +154,11 @@ export default function HargaPage() {
                   </div>
                   {PRICE_ROWS.map((row) => (
                     <div className={styles.colRow} key={row.tier}>
-                      <span className={styles.price}>Rp {row.annualTotal}</span>
-                      <span className={styles.perUserNote}>{ANNUAL_PER_USER_LABEL}</span>
-                      {row.annualNote && <span className={styles.tierNote}>{row.annualNote}</span>}
+                      <span className={styles.price}>
+                        {ANNUAL_PRICE_LABEL}
+                        <span className={styles.priceUnit}>/user/bulan</span>
+                      </span>
+                      <span className={styles.tierNote}>{ANNUAL_SAVINGS_LABEL}</span>
                     </div>
                   ))}
                 </div>
