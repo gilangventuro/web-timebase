@@ -213,7 +213,6 @@ export default function AnimatedSection({
     <motion.div
       animate={{ y: [0, -14, 0] }}
       transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" as const }}
-      whileHover={{ scale: 1.02, transition: { duration: 0.25, ease: "easeOut" as const } }}
     >
       {content}
     </motion.div>
