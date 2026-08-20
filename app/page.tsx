@@ -185,9 +185,9 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.ctaPrimary}
-                title="Request Demo Gratis Timebase via WhatsApp"
+                title="Daftar Sekarang Juga Timebase via WhatsApp"
               >
-                Request Demo Gratis
+                Daftar Sekarang Juga
                 <ArrowRight size={18} aria-hidden="true" />
               </a>
               <a
