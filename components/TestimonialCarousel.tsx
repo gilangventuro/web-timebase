@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, CircleUserRound, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import styles from "./TestimonialCarousel.module.css";
 
 interface Testimonial {
@@ -13,6 +13,23 @@ interface Testimonial {
 interface TestimonialCarouselProps {
   items: readonly Testimonial[];
   ariaLabel: string;
+}
+
+// Curated brand-palette hues (purple/pink/orange family) for the initials
+// avatars — same name always maps to the same color since it's derived
+// from the name itself, not randomized per render.
+const AVATAR_COLORS = ["#7c3aed", "#ec4899", "#f97316", "#a78bfa", "#c026d3", "#fb923c"];
+
+function getInitials(name: string) {
+  const parts = name.trim().split(/\s+/);
+  const first = parts[0]?.[0] ?? "";
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+  return (first + last).toUpperCase();
+}
+
+function getAvatarColor(name: string) {
+  const hash = Array.from(name).reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  return AVATAR_COLORS[hash % AVATAR_COLORS.length];
 }
 
 /**
@@ -73,7 +90,9 @@ export default function TestimonialCarousel({ items, ariaLabel }: TestimonialCar
             <Quote size={22} className={styles.quoteMark} aria-hidden="true" />
             <p className={styles.quote}>{item.quote}</p>
             <div className={styles.person}>
-              <CircleUserRound size={26} className={styles.avatar} aria-hidden="true" />
+              <span className={styles.avatar} style={{ background: getAvatarColor(item.name) }} aria-hidden="true">
+                {getInitials(item.name)}
+              </span>
               <div className={styles.personInfo}>
                 <span className={styles.name}>{item.name}</span>
                 <span className={styles.role}>{item.role}</span>
