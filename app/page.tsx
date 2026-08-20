@@ -61,9 +61,9 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "Sejak pakai Timebase, laporan aktivitas karyawan WFA jadi lebih transparan dan gampang diaudit tiap bulan.",
-    name: "Rania Putri Handayani",
-    role: "HR Manager, PT Cipta Nusantara Teknologi",
+      "Sejak pakai Timebase, laporan aktivitas karyawan WFA jadi lebih transparan dan gampang diaudit, proses monitoring tim jadi jauh lebih efisien.",
+    name: "Enrico Fatkhurrozi Lombardo",
+    role: "HR, PT Venturopro Indonesia",
   },
   {
     quote:
