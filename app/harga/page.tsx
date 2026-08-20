@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import HargaPricingTable from "@/components/HargaPricingTable";
 import { SITE_URL, SITE_NAME, CONTACT_WA_LINK } from "@/lib/site";
 import styles from "./page.module.css";
 
@@ -8,7 +9,7 @@ const PAGE_URL = `${SITE_URL}/harga`;
 
 const PAGE_TITLE = "Harga Berlangganan Timebase — Paket Silver, Platinum, Gold";
 const PAGE_DESCRIPTION =
-  "Bandingkan paket berlangganan Timebase — Silver, Platinum, dan Gold — dengan harga per karyawan/bulan yang makin hemat seiring pertumbuhan tim Anda.";
+  "Bandingkan paket berlangganan Timebase — Silver, Platinum, dan Gold — dengan harga per user yang makin hemat seiring pertumbuhan tim Anda, plus potongan tambahan untuk pembayaran tahunan.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -43,24 +44,40 @@ const PLANS = [
 
 const PRICE_ROWS = [
   {
-    tier: "< 50 Karyawan",
+    tier: "< 50 User",
     note: null,
-    prices: { silver: "17.500", platinum: "22.000", gold: { price: "30.000", was: "35.000" } },
+    prices: {
+      silver: { monthly: "17.500", annualMonthly: "14.000", annualTotal: "168.000" },
+      platinum: { monthly: "22.000", annualMonthly: "17.500", annualTotal: "210.000" },
+      gold: { monthly: "30.000", monthlyWas: "35.000", annualMonthly: "24.000", annualTotal: "288.000" },
+    },
   },
   {
-    tier: "< 200 Karyawan",
+    tier: "< 200 User",
     note: null,
-    prices: { silver: "15.000", platinum: "19.000", gold: { price: "25.000", was: "30.000" } },
+    prices: {
+      silver: { monthly: "15.000", annualMonthly: "12.000", annualTotal: "144.000" },
+      platinum: { monthly: "19.000", annualMonthly: "15.000", annualTotal: "180.000" },
+      gold: { monthly: "25.000", monthlyWas: "30.000", annualMonthly: "20.000", annualTotal: "240.000" },
+    },
   },
   {
-    tier: "< 400 Karyawan",
+    tier: "< 400 User",
     note: "28% lebih murah",
-    prices: { silver: "12.500", platinum: "15.500", gold: { price: "20.000", was: "25.000" } },
+    prices: {
+      silver: { monthly: "12.500", annualMonthly: "10.000", annualTotal: "120.000" },
+      platinum: { monthly: "15.500", annualMonthly: "12.500", annualTotal: "150.000" },
+      gold: { monthly: "20.000", monthlyWas: "25.000", annualMonthly: "16.000", annualTotal: "192.000" },
+    },
   },
   {
-    tier: "> 400 Karyawan",
+    tier: "> 400 User",
     note: "43% lebih murah",
-    prices: { silver: "10.000", platinum: "12.500", gold: { price: "15.000", was: "20.000" } },
+    prices: {
+      silver: { monthly: "10.000", annualMonthly: "8.000", annualTotal: "96.000" },
+      platinum: { monthly: "12.500", annualMonthly: "10.000", annualTotal: "120.000" },
+      gold: { monthly: "15.000", monthlyWas: "20.000", annualMonthly: "12.000", annualTotal: "144.000" },
+    },
   },
 ] as const;
 
@@ -100,8 +117,8 @@ export default function HargaPage() {
           <AnimatedSection as="div" className={styles.heroText}>
             <h1 className={styles.headline}>Subscription Price</h1>
             <p className={styles.subheadline}>
-              Mulai pantau kinerja tim Anda hari ini — pilih paket yang sesuai jumlah karyawan, tanpa kontrak
-              mengikat, dan upgrade kapan saja seiring pertumbuhan bisnis Anda.
+              Mulai pantau kinerja tim Anda hari ini — harga dihitung per user dan makin hemat seiring bertambahnya
+              jumlah user, dengan potongan ekstra jika Anda berlangganan tahunan.
             </p>
           </AnimatedSection>
         </div>
@@ -111,56 +128,13 @@ export default function HargaPage() {
       <section className={styles.pricing}>
         <div className="container">
           <AnimatedSection as="div">
-            <div className={styles.tableScroll}>
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th className={styles.tierHeadCell} scope="col">
-                      <span className={styles.tierHeadTitle}>Paket Kami</span>
-                      <span className={styles.tierHeadSub}>bulan/karyawan</span>
-                    </th>
-                    {PLANS.map((plan) => (
-                      <th
-                        key={plan.id}
-                        scope="col"
-                        className={`${styles.planHeadCell} ${styles[`planHead_${plan.id}`]}`}
-                      >
-                        {plan.id === "gold" && <span className={styles.ribbon}>Best Seller</span>}
-                        <span className={styles.planName}>{plan.name}</span>
-                        <span className={styles.planTagline}>{plan.tagline}</span>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {PRICE_ROWS.map((row) => (
-                    <tr key={row.tier}>
-                      <th scope="row" className={styles.tierCell}>
-                        {row.tier}
-                        {row.note && <span className={styles.tierNote}>{row.note}</span>}
-                      </th>
-                      <td className={styles.priceCell}>
-                        <span className={styles.price}>Rp {row.prices.silver}</span>
-                      </td>
-                      <td className={styles.priceCell}>
-                        <span className={styles.price}>Rp {row.prices.platinum}</span>
-                      </td>
-                      <td className={`${styles.priceCell} ${styles.priceCellGold}`}>
-                        <span className={styles.priceWas}>Rp {row.prices.gold.was}</span>
-                        <span className={styles.price}>Rp {row.prices.gold.price}</span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className={styles.scrollHint}>Geser ke samping untuk membandingkan paket &rarr;</p>
+            <HargaPricingTable plans={PLANS} rows={PRICE_ROWS} />
           </AnimatedSection>
 
           <AnimatedSection as="div" className={styles.ctaBlock}>
             <p className={styles.ctaNote}>
               <Check size={18} aria-hidden="true" />
-              Butuh paket khusus untuk tim di atas 400 karyawan atau kebutuhan enterprise?
+              Butuh paket khusus untuk tim di atas 400 user atau kebutuhan enterprise?
             </p>
             <a
               href={CONTACT_WA_LINK}
