@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Building2,
-  CircleUserRound,
-  ClipboardList,
-  FileSearch,
-  Quote,
-  UsersRound,
-} from "lucide-react";
+import { ArrowRight, Building2, ClipboardList, FileSearch, UsersRound } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import SwipeableCards from "@/components/SwipeableCards";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
 import BerandaMultiCityHub from "@/components/BerandaMultiCityHub";
 import BerandaCaraKerjaSteps from "@/components/BerandaCaraKerjaSteps";
 import BerandaFaqAccordion from "@/components/BerandaFaqAccordion";
@@ -77,6 +70,46 @@ const TESTIMONIALS = [
       "Fitur screenshot berkala dan consent tertulisnya bikin tim kami nyaman, karena semua transparan, bukan diam-diam diawasi.",
     name: "Bagus Prasetyo",
     role: "Chief Operating Officer, PT Delta Awan Digital",
+  },
+  {
+    quote:
+      "Sebagai startup yang timnya masih kecil, kami butuh accountability tool yang ringan. Timebase pas banget, instalasinya cepat dan datanya langsung kebaca di dashboard.",
+    name: "Dewi Anggraini",
+    role: "Founder & CEO, PT Solusi Kode Bangsa",
+  },
+  {
+    quote: "Proses instalasinya ringan dan tidak mengganggu kerja tim IT kami — tinggal pasang, konsen, langsung jalan.",
+    name: "Farhan Alamsyah",
+    role: "IT Manager, PT Mega Data Nusantara",
+  },
+  {
+    quote:
+      "Dulu tiap ada sengketa lembur, kami cuma pegang omongan sepihak. Sekarang ada data aktivitas yang bisa jadi rujukan bersama.",
+    name: "Yuni Kartika",
+    role: "Head of Human Resources, PT Cakrawala Sistem Informasi",
+  },
+  {
+    quote:
+      "Cabang kami tersebar di beberapa kota, tapi lewat dashboard Timebase saya bisa pantau status kerja semua tim dari satu layar.",
+    name: "Reza Firmansyah",
+    role: "Direktur Operasional, PT Garuda Teknologi Mandiri",
+  },
+  {
+    quote:
+      "Karyawan kami awalnya khawatir dianggap diawasi terus-terusan. Setelah tahu ada consent tertulis dan aturan distraksi yang jelas, mereka jadi lebih terbuka.",
+    name: "Melati Suryani",
+    role: "People & Culture Manager, PT Anugerah Cipta Informatika",
+  },
+  {
+    quote: "Dashboard real-time-nya stabil walau tim kami terus bertambah. Datanya konsisten dan enak dipakai buat laporan mingguan.",
+    name: "Andika Putra Ramadhan",
+    role: "Chief Technology Officer, PT Bumi Teknologi Cerdas",
+  },
+  {
+    quote:
+      "Skalanya cocok buat tim WFA kami yang terus tumbuh — dari puluhan sampai ratusan user, laporan aktivitasnya tetap rapi dan mudah dipantau.",
+    name: "Novita Sari",
+    role: "General Manager, PT Sinergi Digital Prakarsa",
   },
 ] as const;
 
@@ -322,21 +355,7 @@ export default function HomePage() {
           </AnimatedSection>
 
           <AnimatedSection as="div">
-            <SwipeableCards ariaLabel="Testimoni klien Timebase">
-              {TESTIMONIALS.map((testimonial) => (
-                <div className={`${styles.testimonialCard} stagger-item`} key={testimonial.name} tabIndex={0}>
-                  <Quote size={22} className={styles.quoteMark} aria-hidden="true" />
-                  <p className={styles.testimonialQuote}>{testimonial.quote}</p>
-                  <div className={styles.testimonialPerson}>
-                    <CircleUserRound size={26} className={styles.testimonialAvatar} aria-hidden="true" />
-                    <div className={styles.testimonialPersonInfo}>
-                      <span className={styles.testimonialName}>{testimonial.name}</span>
-                      <span className={styles.testimonialRole}>{testimonial.role}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </SwipeableCards>
+            <TestimonialCarousel items={TESTIMONIALS} ariaLabel="Testimoni klien Timebase" />
           </AnimatedSection>
         </div>
       </section>
