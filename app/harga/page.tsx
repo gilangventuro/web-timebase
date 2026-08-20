@@ -101,59 +101,63 @@ export default function HargaPage() {
       <section className={styles.pricing}>
         <div className="container">
           <AnimatedSection as="div">
-            <div className={styles.tableWrap}>
-              <Image
-                src="/assets/badge-best-seller.png"
-                alt="Best Seller"
-                title="Paket Tahunan — Best Seller"
-                width={243}
-                height={259}
-                className={styles.bestSellerBadge}
-              />
-              <div className={styles.tableScroll}>
-                <table className={styles.table}>
-                  <thead>
-                    <tr>
-                      <th className={styles.tierHeadCell} scope="col">
-                        <span className={styles.tierHeadTitle}>Jumlah User</span>
-                      </th>
-                      <th className={`${styles.planHeadCell} ${styles.planHeadBulan}`} scope="col">
-                        <span className={styles.planName}>Bulan</span>
-                        <span className={styles.planTagline}>Bayar tiap bulan</span>
-                      </th>
-                      <th className={`${styles.planHeadCell} ${styles.planHeadTahun}`} scope="col">
-                        <span className={styles.mobileBadge} aria-hidden="true">
-                          Best Seller
-                        </span>
-                        <span className={styles.planName}>Tahun</span>
-                        <span className={styles.planTagline}>Bayar sekali untuk 12 bulan</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {PRICE_ROWS.map((row) => (
-                      <tr key={row.tier}>
-                        <th scope="row" className={styles.tierCell}>
-                          {row.tier}
-                          {row.note && <span className={styles.tierNote}>{row.note}</span>}
-                        </th>
-                        <td className={styles.priceCell}>
-                          <span className={styles.price}>
-                            Rp {row.monthly}
-                            <span className={styles.priceUnit}>/bulan</span>
-                          </span>
-                        </td>
-                        <td className={`${styles.priceCell} ${styles.priceCellTahun}`}>
-                          <span className={styles.price}>
-                            Rp {row.annualTotal}
-                            <span className={styles.priceUnit}>/tahun</span>
-                          </span>
-                          <span className={styles.priceAnnualNote}>&asymp; Rp {row.annualMonthly}/bulan</span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <div className={styles.priceGridScroll}>
+              <div className={styles.priceGrid} role="group" aria-label="Harga berlangganan per jumlah user, bulanan dan tahunan">
+                <div className={styles.priceCol}>
+                  <div className={`${styles.colHead} ${styles.colHeadUser}`}>
+                    <span className={styles.tierHeadTitle}>Jumlah User</span>
+                  </div>
+                  {PRICE_ROWS.map((row) => (
+                    <div className={styles.colRow} key={row.tier}>
+                      <span className={styles.tierCellText}>
+                        {row.tier}
+                        {row.note && <span className={styles.tierNote}>{row.note}</span>}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className={styles.priceCol}>
+                  <div className={`${styles.colHead} ${styles.colHeadBulan}`}>
+                    <span className={styles.planName}>Bulan</span>
+                    <span className={styles.planTagline}>Bayar tiap bulan</span>
+                  </div>
+                  {PRICE_ROWS.map((row) => (
+                    <div className={styles.colRow} key={row.tier}>
+                      <span className={styles.price}>
+                        Rp {row.monthly}
+                        <span className={styles.priceUnit}>/bulan</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className={`${styles.priceCol} ${styles.priceColTahun}`}>
+                  <Image
+                    src="/assets/badge-best-seller.png"
+                    alt="Best Seller"
+                    title="Paket Tahunan — Best Seller"
+                    width={243}
+                    height={259}
+                    className={styles.bestSellerBadge}
+                  />
+                  <div className={`${styles.colHead} ${styles.colHeadTahun}`}>
+                    <span className={styles.mobileBadge} aria-hidden="true">
+                      Best Seller
+                    </span>
+                    <span className={styles.planName}>Tahun</span>
+                    <span className={styles.planTagline}>Bayar sekali untuk 12 bulan</span>
+                  </div>
+                  {PRICE_ROWS.map((row) => (
+                    <div className={styles.colRow} key={row.tier}>
+                      <span className={styles.price}>
+                        Rp {row.annualTotal}
+                        <span className={styles.priceUnit}>/tahun</span>
+                      </span>
+                      <span className={styles.priceAnnualNote}>&asymp; Rp {row.annualMonthly}/bulan</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
             <p className={styles.scrollHint}>Geser ke samping untuk membandingkan &rarr;</p>
