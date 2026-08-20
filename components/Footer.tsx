@@ -17,7 +17,8 @@ export default function Footer() {
               alt="Logo Timebase — accountability tool monitoring aktivitas karyawan real-time"
               title="Timebase — Monitoring Aktivitas dan Produktivitas Karyawan"
               width={180}
-              height={40}
+              height={28}
+              className={styles.logo}
             />
           </div>
           <p className={styles.tagline}>{SITE_TAGLINE}.</p>

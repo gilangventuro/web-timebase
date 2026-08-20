@@ -31,6 +31,11 @@
   border-radius: var(--radius-lg);
 }
 
+.logo {
+  width: auto;
+  height: 40px;
+}
+
 .tagline {
   font: var(--text-body-sm);
   font-weight: 600;

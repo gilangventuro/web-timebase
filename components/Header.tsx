@@ -33,7 +33,7 @@ export default function Header() {
             alt="Logo Timebase — accountability tool monitoring aktivitas karyawan real-time"
             title="Timebase — Monitoring Aktivitas dan Produktivitas Karyawan"
             width={220}
-            height={48}
+            height={34}
             priority
             loading="eager"
             className={styles.logo}
