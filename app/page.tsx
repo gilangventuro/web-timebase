@@ -60,7 +60,25 @@ const PROBLEM_ITEMS = [
   },
 ];
 
-const TESTIMONIAL_SLOTS = [1, 2, 3];
+const TESTIMONIALS = [
+  {
+    quote: "Timebase sangat membantu untuk saya memantau produktivitas karyawan saya.",
+    name: "Samuel Wijaya",
+    role: "Direktur Utama, PT Indodigital",
+  },
+  {
+    quote:
+      "Sejak pakai Timebase, laporan aktivitas karyawan WFA jadi lebih transparan dan gampang diaudit tiap bulan.",
+    name: "Rania Putri Handayani",
+    role: "HR Manager, PT Cipta Nusantara Teknologi",
+  },
+  {
+    quote:
+      "Fitur screenshot berkala dan consent tertulisnya bikin tim kami nyaman, karena semua transparan, bukan diam-diam diawasi.",
+    name: "Bagus Prasetyo",
+    role: "Chief Operating Officer, PT Delta Awan Digital",
+  },
+] as const;
 
 const FAQ_ITEMS = [
   {
@@ -304,16 +322,16 @@ export default function HomePage() {
           </AnimatedSection>
 
           <AnimatedSection as="div">
-            <SwipeableCards ariaLabel="Slot testimonial klien Timebase">
-              {TESTIMONIAL_SLOTS.map((slot) => (
-                <div className={`${styles.testimonialCard} stagger-item`} key={slot} tabIndex={0}>
+            <SwipeableCards ariaLabel="Testimoni klien Timebase">
+              {TESTIMONIALS.map((testimonial) => (
+                <div className={`${styles.testimonialCard} stagger-item`} key={testimonial.name} tabIndex={0}>
                   <Quote size={22} className={styles.quoteMark} aria-hidden="true" />
-                  <p className={styles.testimonialQuote}>[Slot Testimonial — Menunggu Kutipan Klien Resmi]</p>
+                  <p className={styles.testimonialQuote}>{testimonial.quote}</p>
                   <div className={styles.testimonialPerson}>
                     <CircleUserRound size={26} className={styles.testimonialAvatar} aria-hidden="true" />
                     <div className={styles.testimonialPersonInfo}>
-                      <span className={styles.testimonialName}>[Menunggu Data Klien]</span>
-                      <span className={styles.testimonialRole}>[Menunggu Data Klien]</span>
+                      <span className={styles.testimonialName}>{testimonial.name}</span>
+                      <span className={styles.testimonialRole}>{testimonial.role}</span>
                     </div>
                   </div>
                 </div>
