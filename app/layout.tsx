@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 
 const spaceGrotesk = Space_Grotesk({
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main>{children}</main>
           <Footer />
+          <WhatsAppFloatingButton />
         </SmoothScrollProvider>
       </body>
     </html>
