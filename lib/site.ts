@@ -7,7 +7,7 @@ export const CONTACT_WA_LINK = "https://wa.me/6282142781080";
 export const OPERATIONAL_AREA = "Kota Malang, Jawa Timur";
 
 export const NAV_LINKS = [
-  { label: "Beranda", href: "/" },
+  { label: "Home", href: "/" },
   { label: "Cara Kerja", href: "/fitur" },
   { label: "Keamanan", href: "/keamanan-kepatuhan" },
   { label: "Harga", href: "/harga" },
