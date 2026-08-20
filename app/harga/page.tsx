@@ -24,41 +24,33 @@ export const metadata: Metadata = {
 };
 
 const PRICE_PER_USER_MONTHLY = 5_000;
-// Annual billing runs at a genuinely cheaper effective rate per user/month
-// than paying month-to-month, rather than the same rate with a cosmetic
-// "Hemat" label — this is what actually gets multiplied into the total.
-const PRICE_PER_USER_ANNUAL_MONTHLY_EQUIVALENT = 3_000;
 const MONTHLY_DISCOUNT_RATE = 0.03;
+const ANNUAL_DISCOUNT_RATE = 0.05;
 // Bracket boundaries: rows 1-3 read "< N User" (priced at N), the last row
 // is the open-ended "> " bracket, priced at the next step in the sequence.
 const USER_TIERS = [10, 30, 50, 70];
-// The first two brackets (< 10, < 30) don't carry a monthly "Hemat" note.
+// The first two brackets (< 10, < 30) don't carry a monthly "Hemat" note,
+// and their annual note is a fixed Rp100.000 rather than the 5% formula.
 const TIERS_WITHOUT_SAVINGS = 2;
+const FLAT_ANNUAL_SAVINGS = 100_000;
 
 const formatRupiah = (value: number) => value.toLocaleString("id-ID");
 
-// The per-user rate is flat regardless of tier — the "Hemat" note is a
-// separate savings callout, it doesn't reduce the billed total — so this is
-// the same for every row rather than computed per tier.
-const MONTHLY_PER_USER_LABEL = `≈ Rp ${formatRupiah(PRICE_PER_USER_MONTHLY)}/user`;
-// Tahun shows the flat per-user rate itself (not a bracket total), since it's
-// the same regardless of team size.
-const ANNUAL_PRICE_LABEL = `Rp ${formatRupiah(PRICE_PER_USER_ANNUAL_MONTHLY_EQUIVALENT)}`;
-const ANNUAL_SAVINGS_LABEL = `Hemat Rp ${formatRupiah(
-  PRICE_PER_USER_MONTHLY - PRICE_PER_USER_ANNUAL_MONTHLY_EQUIVALENT
-)}/user dari harga bulanan`;
-
 const PRICE_ROWS = USER_TIERS.map((users, index) => {
   const monthly = users * PRICE_PER_USER_MONTHLY;
-  const showMonthlySavings = index >= TIERS_WITHOUT_SAVINGS;
+  const annual = monthly * 12;
+  const showSavings = index >= TIERS_WITHOUT_SAVINGS;
   const monthlySavings = Math.round(monthly * MONTHLY_DISCOUNT_RATE);
+  const annualSavings = showSavings ? Math.round(annual * ANNUAL_DISCOUNT_RATE) : FLAT_ANNUAL_SAVINGS;
   const isLast = index === USER_TIERS.length - 1;
   const tier = isLast ? `> ${USER_TIERS[index - 1]} User` : `< ${users} User`;
 
   return {
     tier,
     monthly: formatRupiah(monthly),
-    monthlyNote: showMonthlySavings ? `Hemat Rp ${formatRupiah(monthlySavings)}` : null,
+    monthlyNote: showSavings ? `Hemat Rp ${formatRupiah(monthlySavings)}` : null,
+    annualTotal: formatRupiah(annual),
+    annualNote: `Hemat Rp ${formatRupiah(annualSavings)}`,
   };
 });
 
@@ -130,7 +122,6 @@ export default function HargaPage() {
                   {PRICE_ROWS.map((row) => (
                     <div className={styles.colRow} key={row.tier}>
                       <span className={styles.price}>Rp {row.monthly}</span>
-                      <span className={styles.perUserNote}>{MONTHLY_PER_USER_LABEL}</span>
                       {row.monthlyNote && <span className={styles.tierNote}>{row.monthlyNote}</span>}
                     </div>
                   ))}
@@ -154,11 +145,8 @@ export default function HargaPage() {
                   </div>
                   {PRICE_ROWS.map((row) => (
                     <div className={styles.colRow} key={row.tier}>
-                      <span className={styles.price}>
-                        {ANNUAL_PRICE_LABEL}
-                        <span className={styles.priceUnit}>/user/bulan</span>
-                      </span>
-                      <span className={styles.tierNote}>{ANNUAL_SAVINGS_LABEL}</span>
+                      <span className={styles.price}>Rp {row.annualTotal}</span>
+                      {row.annualNote && <span className={styles.tierNote}>{row.annualNote}</span>}
                     </div>
                   ))}
                 </div>
