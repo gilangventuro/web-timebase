@@ -8,13 +8,34 @@
   --panduan-border: #e5e7eb;
   --panduan-code-bg: #f1f5f4;
 
+  position: relative;
   background: var(--panduan-bg);
   color: var(--panduan-ink);
   font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.65;
 }
 
+/* Same radial-gradient recipe used by every other page's hero. Fixed
+   height + absolute positioning (instead of living on a hero section like
+   elsewhere) because Panduan has no separate hero block — this washes just
+   the top of the sidebar/content regardless of how long the docs page is. */
+.heroGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 360px;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 75% 65% at 8% -20%, rgba(124, 58, 237, 0.35), transparent 65%),
+    radial-gradient(ellipse 60% 55% at 48% -25%, rgba(236, 72, 153, 0.22), transparent 62%),
+    radial-gradient(ellipse 70% 65% at 100% -10%, rgba(249, 115, 22, 0.32), transparent 65%);
+}
+
 .layout {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: flex-start;
   gap: 56px;
