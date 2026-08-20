@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   Building2,
-  CirclePlay,
   CircleUserRound,
   ClipboardList,
   FileSearch,
@@ -189,14 +188,6 @@ export default function HomePage() {
               >
                 Daftar Sekarang Juga
                 <ArrowRight size={18} aria-hidden="true" />
-              </a>
-              <a
-                href="#cara-kerja"
-                className={styles.ctaSecondary}
-                title="Lihat Cara Kerja Timebase Real-Time"
-              >
-                <CirclePlay size={18} aria-hidden="true" />
-                Lihat Cara Kerja
               </a>
             </div>
             <ul className={styles.statsRow} aria-label="Statistik kepercayaan Timebase">
