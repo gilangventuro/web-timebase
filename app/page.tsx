@@ -347,10 +347,10 @@ export default function HomePage() {
         <div className="container">
           <AnimatedSection as="div" className={styles.sectionHead}>
             <h2 id="social-proof-title" className={styles.sectionTitle}>
-              Dipercaya 100+ Klien Aktif
+              Testimoni Klien Timebase
             </h2>
-            <p className={styles.leadStat}>
-              <strong>100+</strong> Klien/Pengguna Aktif Timebase
+            <p className={styles.valueProp}>
+              Timebase telah dipercaya oleh 100+ perusahaan untuk memantau dan meningkatkan produktivitas tim mereka.
             </p>
           </AnimatedSection>
 
