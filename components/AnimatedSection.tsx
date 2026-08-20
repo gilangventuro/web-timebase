@@ -211,8 +211,8 @@ export default function AnimatedSection({
 
   return (
     <motion.div
-      animate={{ y: [0, -6, 0] }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" as const }}
+      animate={{ y: [0, -14, 0] }}
+      transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" as const }}
       whileHover={{ scale: 1.02, transition: { duration: 0.25, ease: "easeOut" as const } }}
     >
       {content}
