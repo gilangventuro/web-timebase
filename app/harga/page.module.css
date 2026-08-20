@@ -1,0 +1,227 @@
+/* ===== HERO (single column, center-aligned) ===== */
+.hero {
+  padding-block: var(--space-16) var(--space-24);
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(ellipse 75% 65% at 8% -20%, rgba(124, 58, 237, 0.45), transparent 65%),
+    radial-gradient(ellipse 60% 55% at 48% -25%, rgba(236, 72, 153, 0.3), transparent 62%),
+    radial-gradient(ellipse 70% 65% at 100% -10%, rgba(249, 115, 22, 0.42), transparent 65%),
+    var(--color-bg);
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 680px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.headline {
+  font: var(--text-h1);
+  font-size: clamp(2.1rem, 4.4vw, 3rem);
+  color: var(--color-text);
+}
+
+.subheadline {
+  font: var(--text-body-lg);
+  color: var(--color-text-muted);
+  max-width: 58ch;
+}
+
+/* ===== SECTION: Tabel Harga ===== */
+.pricing {
+  padding-block: var(--space-24);
+}
+
+.tableScroll {
+  overflow-x: auto;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+}
+
+.table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  background: var(--color-surface);
+}
+
+.tierHeadCell,
+.planHeadCell {
+  padding: var(--space-6) var(--space-4);
+  vertical-align: middle;
+}
+
+.tierHeadCell {
+  background: #1e293b;
+  color: #ffffff;
+  text-align: left;
+  min-width: 180px;
+}
+
+.tierHeadTitle {
+  display: block;
+  font: var(--text-h4);
+  font-size: 1.05rem;
+}
+
+.tierHeadSub {
+  display: block;
+  font: var(--text-body-sm);
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 2px;
+}
+
+.planHeadCell {
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+  min-width: 160px;
+}
+
+.planHead_silver {
+  background: #64748b;
+}
+
+.planHead_platinum {
+  background: var(--color-primary);
+}
+
+.planHead_gold {
+  background: var(--gradient-brand);
+}
+
+.ribbon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ffffff;
+  color: var(--color-secondary-dark);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.planName {
+  display: block;
+  font: var(--text-h4);
+  font-size: 1.15rem;
+}
+
+.planTagline {
+  display: block;
+  font: var(--text-body-sm);
+  margin-top: 4px;
+  opacity: 0.9;
+  max-width: 22ch;
+  margin-inline: auto;
+}
+
+.table tbody tr:nth-child(even) {
+  background: var(--color-bg-alt);
+}
+
+.tierCell {
+  text-align: left;
+  padding: var(--space-4);
+  font: var(--text-h4);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  border-top: 1px solid var(--color-border);
+}
+
+.tierNote {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-success);
+  margin-top: 2px;
+}
+
+.priceCell {
+  text-align: center;
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.priceCellGold {
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.price {
+  font: var(--text-h4);
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.priceWas {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  margin-bottom: 2px;
+}
+
+.scrollHint {
+  display: none;
+  text-align: center;
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-3);
+}
+
+@media (max-width: 640px) {
+  .scrollHint {
+    display: block;
+  }
+}
+
+/* ===== CTA block below table ===== */
+.ctaBlock {
+  margin-top: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.ctaNote {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-body);
+  color: var(--color-text-muted);
+}
+
+.ctaNote svg {
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  min-height: 44px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-brand);
+  color: #ffffff;
+  font-weight: 600;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.ctaPrimary:hover {
+  filter: brightness(1.08);
+  transform: scale(1.02);
+}

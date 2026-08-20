@@ -5,7 +5,7 @@ import { PANDUAN_FLAT_LINKS } from "@/lib/panduan-nav";
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const routes = ["/", "/fitur", "/keamanan-kepatuhan", "/blog"];
+  const routes = ["/", "/fitur", "/keamanan-kepatuhan", "/harga", "/blog"];
   const panduanRoutes = PANDUAN_FLAT_LINKS.map((link) => link.href);
   const blogPosts = [
     "/blog/accountability-tool-vs-surveillance-tool-monitoring-karyawan-wfa",

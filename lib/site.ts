@@ -10,6 +10,7 @@ export const NAV_LINKS = [
   { label: "Beranda", href: "/" },
   { label: "Cara Kerja", href: "/fitur" },
   { label: "Keamanan", href: "/keamanan-kepatuhan" },
+  { label: "Harga", href: "/harga" },
   { label: "Panduan", href: "/panduan" },
   { label: "Blog", href: "/blog" },
 ] as const;
