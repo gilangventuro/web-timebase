@@ -217,11 +217,11 @@ export default function HomePage() {
 
           <AnimatedSection as="div" className={styles.heroVisual} delay={150} ambient>
             <Image
-              src="/assets/dashboard-laptop-mockup.png"
-              alt="Dashboard Timebase menampilkan aktivitas karyawan real-time di laptop"
+              src="/assets/hero-person-laptop.png"
+              alt="Tim Timebase menunjukkan dashboard monitoring aktivitas karyawan real-time di laptop"
               title="Dashboard Real-Time Timebase — Monitoring Aktivitas Karyawan"
-              width={1448}
-              height={1086}
+              width={4877}
+              height={4460}
               priority
               className={styles.heroImage}
             />
