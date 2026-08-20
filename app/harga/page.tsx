@@ -23,36 +23,27 @@ export const metadata: Metadata = {
   },
 };
 
-const PRICE_ROWS = [
-  {
-    tier: "< 50 User",
-    monthly: "100.000",
-    monthlyNote: null,
-    annualTotal: "1.100.000",
-    annualNote: "Hemat Rp 100.000",
-  },
-  {
-    tier: "< 200 User",
-    monthly: "400.000",
-    monthlyNote: null,
-    annualTotal: "4.600.000",
-    annualNote: "Hemat Rp 200.000",
-  },
-  {
-    tier: "< 400 User",
-    monthly: "600.000",
-    monthlyNote: "Hemat Rp 200.000",
-    annualTotal: "6.900.000",
-    annualNote: "Hemat Rp 300.000",
-  },
-  {
-    tier: "> 400 User",
-    monthly: "750.000",
-    monthlyNote: "Hemat > Rp 200.000",
-    annualTotal: "8.500.000",
-    annualNote: "Hemat Rp 500.000",
-  },
-] as const;
+const PRICE_PER_USER_MONTHLY = 5_000;
+const MONTHLY_DISCOUNT_RATE = 0.03;
+const ANNUAL_DISCOUNT_RATE = 0.05;
+const USER_TIERS = [10, 30, 50, 70];
+
+const formatRupiah = (value: number) => value.toLocaleString("id-ID");
+
+const PRICE_ROWS = USER_TIERS.map((users) => {
+  const monthly = users * PRICE_PER_USER_MONTHLY;
+  const annual = monthly * 12;
+  const monthlySavings = Math.round(monthly * MONTHLY_DISCOUNT_RATE);
+  const annualSavings = Math.round(annual * ANNUAL_DISCOUNT_RATE);
+
+  return {
+    tier: `${users} User`,
+    monthly: formatRupiah(monthly),
+    monthlyNote: `Hemat Rp ${formatRupiah(monthlySavings)}`,
+    annualTotal: formatRupiah(annual),
+    annualNote: `Hemat Rp ${formatRupiah(annualSavings)}`,
+  };
+});
 
 export default function HargaPage() {
   const jsonLd = [
@@ -163,7 +154,7 @@ export default function HargaPage() {
           <AnimatedSection as="div" className={styles.ctaBlock}>
             <p className={styles.ctaNote}>
               <Check size={18} aria-hidden="true" />
-              Butuh paket khusus untuk tim di atas 400 user atau kebutuhan enterprise?
+              Butuh estimasi harga untuk jumlah user lain atau kebutuhan khusus?
             </p>
             <a
               href={CONTACT_WA_LINK}
