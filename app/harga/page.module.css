@@ -52,8 +52,8 @@
 
 .bestSellerBadge {
   position: absolute;
-  top: -32px;
-  right: 4px;
+  top: -16px;
+  right: -4px;
   width: 56px;
   height: auto;
   z-index: 5;
