@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Check, Sparkles } from "lucide-react";
+import { Check, PiggyBank } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { SITE_URL, SITE_NAME, CONTACT_WA_LINK } from "@/lib/site";
 import styles from "./page.module.css";
@@ -163,7 +163,7 @@ export default function HargaPage() {
             <p className={styles.scrollHint}>Geser ke samping untuk membandingkan &rarr;</p>
 
             <p className={styles.annualNote}>
-              <Sparkles size={16} aria-hidden="true" />
+              <PiggyBank size={18} aria-hidden="true" />
               Berlangganan tahunan lebih hemat — bayar sekali untuk 12 bulan dan dapatkan harga per bulan yang lebih
               murah dibanding langganan bulanan.
             </p>

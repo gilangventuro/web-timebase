@@ -109,7 +109,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 96px;
+  min-height: 100px;
   padding: var(--space-6) var(--space-4);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
@@ -117,7 +117,7 @@
 .colHeadUser {
   background: #1e293b;
   color: #ffffff;
-  text-align: left;
+  text-align: center;
 }
 
 .tierHeadTitle {
@@ -157,7 +157,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 76px;
+  min-height: 84px;
   padding: var(--space-4);
   border-top: 1px solid var(--color-border);
   text-align: center;
@@ -173,7 +173,7 @@
 
 .tierCellText {
   display: block;
-  text-align: left;
+  text-align: center;
   font: var(--text-h4);
   font-size: 0.95rem;
   color: var(--color-text);
@@ -234,7 +234,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  max-width: 560px;
+  max-width: 720px;
   margin: var(--space-6) auto 0;
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-lg);
