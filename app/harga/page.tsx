@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Check } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
-import HargaPricingTable from "@/components/HargaPricingTable";
 import { SITE_URL, SITE_NAME, CONTACT_WA_LINK } from "@/lib/site";
 import styles from "./page.module.css";
 
 const PAGE_URL = `${SITE_URL}/harga`;
 
-const PAGE_TITLE = "Harga Berlangganan Timebase — Paket Silver, Platinum, Gold";
+const PAGE_TITLE = "Harga Berlangganan Timebase — Per User, Bulanan & Tahunan";
 const PAGE_DESCRIPTION =
-  "Bandingkan paket berlangganan Timebase — Silver, Platinum, dan Gold — dengan harga per user yang makin hemat seiring pertumbuhan tim Anda, plus potongan tambahan untuk pembayaran tahunan.";
+  "Harga berlangganan Timebase dihitung per user dan makin hemat seiring pertumbuhan tim Anda — pilih bayar bulanan atau tahunan untuk potongan harga lebih besar.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -23,61 +22,34 @@ export const metadata: Metadata = {
   },
 };
 
-const PLANS = [
-  {
-    id: "silver",
-    name: "Silver",
-    tagline: "Monitoring dasar aktivitas kerja real-time",
-  },
-  {
-    id: "platinum",
-    name: "Platinum",
-    tagline: "+ Screenshot berkala & distraction rules",
-  },
-  {
-    id: "gold",
-    name: "Gold",
-    tagline: "Paket terlengkap, semua fitur & pelaporan lanjutan",
-    bestSeller: true,
-  },
-] as const;
-
 const PRICE_ROWS = [
   {
     tier: "< 50 User",
     note: null,
-    prices: {
-      silver: { monthly: "17.500", annualMonthly: "14.000", annualTotal: "168.000" },
-      platinum: { monthly: "22.000", annualMonthly: "17.500", annualTotal: "210.000" },
-      gold: { monthly: "30.000", monthlyWas: "35.000", annualMonthly: "24.000", annualTotal: "288.000" },
-    },
+    monthly: "17.500",
+    annualMonthly: "14.000",
+    annualTotal: "168.000",
   },
   {
     tier: "< 200 User",
     note: null,
-    prices: {
-      silver: { monthly: "15.000", annualMonthly: "12.000", annualTotal: "144.000" },
-      platinum: { monthly: "19.000", annualMonthly: "15.000", annualTotal: "180.000" },
-      gold: { monthly: "25.000", monthlyWas: "30.000", annualMonthly: "20.000", annualTotal: "240.000" },
-    },
+    monthly: "15.000",
+    annualMonthly: "12.000",
+    annualTotal: "144.000",
   },
   {
     tier: "< 400 User",
     note: "28% lebih murah",
-    prices: {
-      silver: { monthly: "12.500", annualMonthly: "10.000", annualTotal: "120.000" },
-      platinum: { monthly: "15.500", annualMonthly: "12.500", annualTotal: "150.000" },
-      gold: { monthly: "20.000", monthlyWas: "25.000", annualMonthly: "16.000", annualTotal: "192.000" },
-    },
+    monthly: "12.500",
+    annualMonthly: "10.000",
+    annualTotal: "120.000",
   },
   {
     tier: "> 400 User",
     note: "43% lebih murah",
-    prices: {
-      silver: { monthly: "10.000", annualMonthly: "8.000", annualTotal: "96.000" },
-      platinum: { monthly: "12.500", annualMonthly: "10.000", annualTotal: "120.000" },
-      gold: { monthly: "15.000", monthlyWas: "20.000", annualMonthly: "12.000", annualTotal: "144.000" },
-    },
+    monthly: "10.000",
+    annualMonthly: "8.000",
+    annualTotal: "96.000",
   },
 ] as const;
 
@@ -128,7 +100,56 @@ export default function HargaPage() {
       <section className={styles.pricing}>
         <div className="container">
           <AnimatedSection as="div">
-            <HargaPricingTable plans={PLANS} rows={PRICE_ROWS} />
+            <div className={styles.tableScroll}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th className={styles.tierHeadCell} scope="col">
+                      <span className={styles.tierHeadTitle}>Jumlah User</span>
+                    </th>
+                    <th className={`${styles.planHeadCell} ${styles.planHeadBulan}`} scope="col">
+                      <span className={styles.planName}>Bulan</span>
+                      <span className={styles.planTagline}>Bayar tiap bulan</span>
+                    </th>
+                    <th className={`${styles.planHeadCell} ${styles.planHeadTahun}`} scope="col">
+                      <span className={styles.ribbon}>Best Seller</span>
+                      <span className={styles.planName}>Tahun</span>
+                      <span className={styles.planTagline}>Bayar sekali untuk 12 bulan</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {PRICE_ROWS.map((row) => (
+                    <tr key={row.tier}>
+                      <th scope="row" className={styles.tierCell}>
+                        {row.tier}
+                        {row.note && <span className={styles.tierNote}>{row.note}</span>}
+                      </th>
+                      <td className={styles.priceCell}>
+                        <span className={styles.price}>
+                          Rp {row.monthly}
+                          <span className={styles.priceUnit}>/bulan</span>
+                        </span>
+                      </td>
+                      <td className={`${styles.priceCell} ${styles.priceCellTahun}`}>
+                        <span className={styles.price}>
+                          Rp {row.annualTotal}
+                          <span className={styles.priceUnit}>/tahun</span>
+                        </span>
+                        <span className={styles.priceAnnualNote}>&asymp; Rp {row.annualMonthly}/bulan</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className={styles.scrollHint}>Geser ke samping untuk membandingkan &rarr;</p>
+
+            <p className={styles.annualNote}>
+              <Sparkles size={16} aria-hidden="true" />
+              Berlangganan tahunan lebih hemat — bayar sekali untuk 12 bulan dan dapatkan harga per bulan yang lebih
+              murah dibanding langganan bulanan.
+            </p>
           </AnimatedSection>
 
           <AnimatedSection as="div" className={styles.ctaBlock}>

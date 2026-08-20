@@ -37,6 +37,169 @@
   padding-block: var(--space-8) var(--space-24);
 }
 
+.tableScroll {
+  overflow-x: auto;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  background: var(--color-surface);
+}
+
+.tierHeadCell,
+.planHeadCell {
+  padding: var(--space-6) var(--space-4);
+  vertical-align: middle;
+}
+
+.tierHeadCell {
+  background: #1e293b;
+  color: #ffffff;
+  text-align: left;
+  min-width: 180px;
+}
+
+.tierHeadTitle {
+  display: block;
+  font: var(--text-h4);
+  font-size: 1.05rem;
+}
+
+.planHeadCell {
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+  min-width: 160px;
+}
+
+.planHeadBulan {
+  background: #64748b;
+}
+
+.planHeadTahun {
+  background: var(--gradient-brand);
+}
+
+.ribbon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ffffff;
+  color: var(--color-secondary-dark);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.planName {
+  display: block;
+  font: var(--text-h4);
+  font-size: 1.15rem;
+}
+
+.planTagline {
+  display: block;
+  font: var(--text-body-sm);
+  margin-top: 4px;
+  opacity: 0.9;
+}
+
+.table tbody tr:nth-child(even) {
+  background: var(--color-bg-alt);
+}
+
+.tierCell {
+  text-align: left;
+  padding: var(--space-4);
+  font: var(--text-h4);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  border-top: 1px solid var(--color-border);
+}
+
+.tierNote {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-success);
+  margin-top: 2px;
+}
+
+.priceCell {
+  text-align: center;
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.priceCellTahun {
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.price {
+  font: var(--text-h4);
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.priceUnit {
+  font: var(--text-body-sm);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  margin-left: 2px;
+}
+
+.priceAnnualNote {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.scrollHint {
+  display: none;
+  text-align: center;
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-3);
+}
+
+@media (max-width: 640px) {
+  .scrollHint {
+    display: block;
+  }
+}
+
+.annualNote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  max-width: 560px;
+  margin: var(--space-6) auto 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: rgba(124, 58, 237, 0.06);
+  color: var(--color-text-muted);
+  font: var(--text-body-sm);
+  text-align: center;
+}
+
+.annualNote svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
 /* ===== CTA block below table ===== */
 .ctaBlock {
   margin-top: var(--space-16);
