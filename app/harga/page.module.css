@@ -106,6 +106,10 @@
 }
 
 .colHead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 96px;
   padding: var(--space-6) var(--space-4);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
@@ -150,6 +154,10 @@
 }
 
 .colRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 76px;
   padding: var(--space-4);
   border-top: 1px solid var(--color-border);
   text-align: center;
