@@ -29,8 +29,10 @@ const ANNUAL_DISCOUNT_RATE = 0.05;
 // Bracket boundaries: rows 1-3 read "< N User" (priced at N), the last row
 // is the open-ended "> " bracket, priced at the next step in the sequence.
 const USER_TIERS = [10, 30, 50, 70];
-// The first two brackets (< 10, < 30) don't carry a "Hemat" note.
+// The first two brackets (< 10, < 30) don't carry a monthly "Hemat" note,
+// and their annual note is a fixed Rp100.000 rather than the 5% formula.
 const TIERS_WITHOUT_SAVINGS = 2;
+const FLAT_ANNUAL_SAVINGS = 100_000;
 
 const formatRupiah = (value: number) => value.toLocaleString("id-ID");
 
@@ -39,7 +41,7 @@ const PRICE_ROWS = USER_TIERS.map((users, index) => {
   const annual = monthly * 12;
   const showSavings = index >= TIERS_WITHOUT_SAVINGS;
   const monthlySavings = Math.round(monthly * MONTHLY_DISCOUNT_RATE);
-  const annualSavings = Math.round(annual * ANNUAL_DISCOUNT_RATE);
+  const annualSavings = showSavings ? Math.round(annual * ANNUAL_DISCOUNT_RATE) : FLAT_ANNUAL_SAVINGS;
   const isLast = index === USER_TIERS.length - 1;
   const tier = isLast ? `> ${USER_TIERS[index - 1]} User` : `< ${users} User`;
 
@@ -48,7 +50,7 @@ const PRICE_ROWS = USER_TIERS.map((users, index) => {
     monthly: formatRupiah(monthly),
     monthlyNote: showSavings ? `Hemat Rp ${formatRupiah(monthlySavings)}` : null,
     annualTotal: formatRupiah(annual),
-    annualNote: showSavings ? `Hemat Rp ${formatRupiah(annualSavings)}` : null,
+    annualNote: `Hemat Rp ${formatRupiah(annualSavings)}`,
   };
 });
 
