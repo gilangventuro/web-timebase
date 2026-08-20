@@ -36,6 +36,12 @@ const FLAT_ANNUAL_SAVINGS = 100_000;
 
 const formatRupiah = (value: number) => value.toLocaleString("id-ID");
 
+// The per-user rate is flat regardless of tier — the "Hemat" note is a
+// separate savings callout, it doesn't reduce the billed total — so this is
+// the same for every row rather than computed per tier.
+const MONTHLY_PER_USER_LABEL = `≈ Rp ${formatRupiah(PRICE_PER_USER_MONTHLY)}/user`;
+const ANNUAL_PER_USER_LABEL = `≈ Rp ${formatRupiah(PRICE_PER_USER_MONTHLY * 12)}/user`;
+
 const PRICE_ROWS = USER_TIERS.map((users, index) => {
   const monthly = users * PRICE_PER_USER_MONTHLY;
   const annual = monthly * 12;
@@ -122,6 +128,7 @@ export default function HargaPage() {
                   {PRICE_ROWS.map((row) => (
                     <div className={styles.colRow} key={row.tier}>
                       <span className={styles.price}>Rp {row.monthly}</span>
+                      <span className={styles.perUserNote}>{MONTHLY_PER_USER_LABEL}</span>
                       {row.monthlyNote && <span className={styles.tierNote}>{row.monthlyNote}</span>}
                     </div>
                   ))}
@@ -146,6 +153,7 @@ export default function HargaPage() {
                   {PRICE_ROWS.map((row) => (
                     <div className={styles.colRow} key={row.tier}>
                       <span className={styles.price}>Rp {row.annualTotal}</span>
+                      <span className={styles.perUserNote}>{ANNUAL_PER_USER_LABEL}</span>
                       {row.annualNote && <span className={styles.tierNote}>{row.annualNote}</span>}
                     </div>
                   ))}
