@@ -66,9 +66,9 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.ctaButton}
-            title="Request Demo Gratis Timebase via WhatsApp"
+            title="Coba Gratis Timebase via WhatsApp"
           >
-            Request Demo
+            Coba Gratis
           </a>
           <button
             type="button"
@@ -113,9 +113,9 @@ export default function Header() {
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
               className={styles.ctaButtonMobile}
-              title="Request Demo Gratis Timebase via WhatsApp"
+              title="Coba Gratis Timebase via WhatsApp"
             >
-              Request Demo
+              Coba Gratis
             </a>
           </li>
         </ul>
