@@ -112,7 +112,14 @@ export default function HargaPage() {
                       <span className={styles.planTagline}>Bayar tiap bulan</span>
                     </th>
                     <th className={`${styles.planHeadCell} ${styles.planHeadTahun}`} scope="col">
-                      <span className={styles.ribbon}>Best Seller</span>
+                      <span className={styles.medalBadge} aria-label="Best Seller">
+                        <span className={styles.medalTailLeft} aria-hidden="true" />
+                        <span className={styles.medalTailRight} aria-hidden="true" />
+                        <span className={styles.medalCircle} aria-hidden="true">
+                          <span>Best</span>
+                          <span>Seller</span>
+                        </span>
+                      </span>
                       <span className={styles.planName}>Tahun</span>
                       <span className={styles.planTagline}>Bayar sekali untuk 12 bulan</span>
                     </th>
