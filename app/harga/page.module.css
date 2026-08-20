@@ -242,7 +242,7 @@
 
 /* ===== CTA block below table ===== */
 .ctaBlock {
-  margin-top: var(--space-16);
+  margin-top: var(--space-8);
   display: flex;
   flex-direction: column;
   align-items: center;
